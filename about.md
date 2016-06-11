@@ -4,12 +4,20 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Work Experience
+IBM - Intern
+July 2013 - August 2013 | Istanbul, Turkey 
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
+Primetek - Long Term Intern
+August 2014 - January 2015 | Ankara, Turkey 
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+Hitit Computer Services - Analyst Programmer
+April 2016 - Now | Istanbul, Turkey 
+
+
+Here is my skill set
+Java
+Jsf
+Javascript
+
+
