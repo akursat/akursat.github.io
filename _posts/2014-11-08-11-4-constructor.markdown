@@ -1,0 +1,108 @@
+---
+author: akursat
+comments: true
+date: 2014-11-08 08:23:05+00:00
+layout: post
+link: http://akursat.com/?p=84
+slug: 11-4-constructor
+title: 11.4 - Constructor
+wordpress_id: 84
+categories:
+- Java
+- Java Se
+tags:
+- constructor
+- default constructor
+- java
+- java dersleri
+- metot
+- sınıf
+- yapılandırıcı
+---
+
+Bu konu başlığı altındaki en önemli konulardan biride Constructor(yapılandırıcı metot).Sınıfların nesneler için bir şablon olduğunu söylemiştik.Nesneler olmadan sınıflar anlamsızlardı.Nesneler oluşturulurken otomatik çağrılan yapıya constructor denir.Constructor tanımlanması metotlara benzer.
+_Her zaman yeni bir nesne oluşturulduğunda constructor çağrılır. _
+
+Constructorlar şu özelliklere sahiptir;
+
+
+
+	
+  * Her sınıf bir constructora sahiptir.
+
+	
+  * Bulunduğu sınıfın ismi kullanılır.
+
+	
+  * return tipi bulundurmaz.
+
+	
+  * Eğer oluşturduğumuz sınıfa açıkca constructor yazmazsak derleyici bizim yerimize “default constructor” ekler 
+
+
+
+
+### 
+Default Constructor
+
+
+Argüman/parametre almanyan contstuctordır.
+Örneğin:
+
+    
+    public Bisiklet(){
+    	//Default Constructor
+    }
+
+
+
+
+
+### Constructor Örneği
+
+
+Şimdi örnek üzerinden bu konuyu daha iyi kavrayalım.[11.Sınıflar ](http://www.akursat.com/11-siniflar/)yazısında verdiğimiz Bisiklet sınıfı bir constructora sahipti;
+
+
+    
+     // Bisiklet sınıfı bir Constructora sahip
+        public Bisiklet(int kadansBaslat, int vitesiBaslat, int hiziBaslat) {
+            vites = vitesiBaslat;
+            kadans = kadansBaslat;
+            hiz = hiziBaslat;
+        }
+
+
+Bir sınıf constructor içeriyorsa, sınıfdan bir nesne oluşturduğumuzda bu constuctor çağrılır.Örneğin yeni bir Bisiklet nesnesi oluşturalım ve adını bisiklet1 koyalım.Constructorlar “new” operatörü ile çağrılır;
+
+    
+    Bisiklet bisiklet1 = new Bisiklet(20, 0, 3);
+
+
+new Bisiklet(20, 0, 3) hafızada yer oluşturur ve fieldlere ilk değerlerini atar.
+
+
+
+
+
+### Birden Fazla Constructor
+
+
+Bisiklet sınıfı birden fazla constructorda bulundurabilir.Örneğin parametre almayan bir constructor;
+
+    
+    public Bisiklet() {
+        vites = 1;
+      	kadans = 10;
+       	hiz = 0;
+    }
+
+
+İki constructor da tanımlanabilir çünkü parametre listeleri farklı olduğundan Metot Signatureleri farklıdır.Bir önceki yazıda bu olayı detaylandırmıştık.
+
+
+
+
+
+
+

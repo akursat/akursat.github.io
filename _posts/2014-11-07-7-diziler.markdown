@@ -1,0 +1,211 @@
+---
+author: akursat
+comments: true
+date: 2014-11-07 20:48:59+00:00
+layout: post
+link: http://akursat.com/?p=47
+slug: 7-diziler
+title: 7 - Diziler
+wordpress_id: 47
+categories:
+- Java
+- Java Se
+tags:
+- array
+- dizi
+- index
+- java
+- java dersleri
+---
+
+Tek tipdeki değerlerin sonlu sayıdaki elamanını içeren nesneye dizi(array) denir.
+Dizi hakkında bilmemiz gereken önemli şeyler şunlar;
+
+
+
+
+
+
+	
+  * Diziler aynı tipden elemanların sıralı listesini tutar.
+
+	
+  * Dizinin herbir elemanına Index'i üzerinden erişilir.
+
+	
+  * Dizinin boyutu tanımlandığı zaman oluşur yani sabitdir.
+
+	
+  * Dizilerde numaralandırma 0'dan başlar.
+
+
+
+
+
+[![](http://www.akursat.com/wp-content/uploads/2013/12/dizi.png)](http://www.akursat.com/wp-content/uploads/2013/12/dizi.png)
+
+
+
+
+
+## **Dizilerin Tanımlanması ve Kullanımı**
+
+
+
+    
+    Tipi[] ismi ;
+    ismi=new Tipi[Boyutu] ;
+
+
+
+
+veya
+
+
+
+
+    
+    Tipi[] ismi = Tipi[Boyutu] ;
+
+
+
+
+şeklinde tanımlanabilir.Ek olarak
+
+
+
+
+    
+    Tipi ismi[] ;//Tercih edilmez.
+
+
+
+
+şeklindede tanımlama yapabilirsiniz ama bu yol tercih edilmez.Dizinin herbir elemanına indisleri kullanarak şu şekilde;
+
+
+
+
+    
+    ismi[indeks] = değer;
+
+
+
+
+atama yapılır.Veya;
+
+
+
+
+    
+    Tipi[] ismi={deger1,deger2,deger3}; //devam edecek şekilde
+
+
+
+
+şeklindede atama yapılabilir.
+Örnek uygulamada dizi tipi int olarak tanımlanmıştır.Benzer şekilde dizileri byte[], float[],String[] vb. tiplerde tanımlayabilirsiniz.
+
+
+
+
+** Örnek Uygulama;**
+
+
+
+
+    
+    public class DiziOrnek {
+    
+        public static void main(String[] args) {
+    
+             //int dizi1[]; tavsiye edilmeyen tanımlama şekli.
+             int[] dizi1;
+             dizi1=new int[10];
+    
+             dizi1[0]=5;
+             dizi1[1]=6;
+             dizi1[4]=9;
+             dizi1[9]=33;
+    
+             System.out.println("0. indeks: "+dizi1[0]);
+             System.out.println("1. indeks: "+dizi1[1]);
+             System.out.println("4. indeks: "+dizi1[4]);
+             System.out.println("9. indeks: "+dizi1[9]);
+             System.out.println("3. indeks: "+dizi1[3]);
+    
+             System.out.println("---------------");
+            
+             //Kısa tanımlama şekli.
+             int[] dizi2=new int[10];
+    
+             dizi2[0]=5;
+             dizi2[1]=6;
+             dizi2[4]=9;
+             dizi2[9]=33;
+    
+             System.out.println("0. indeks: "+dizi2[0]);
+             System.out.println("1. indeks: "+dizi2[1]);
+             System.out.println("4. indeks: "+dizi2[4]);
+             System.out.println("9. indeks: "+dizi2[9]);
+             System.out.println("3. indeks: "+dizi2[3]);
+    
+             System.out.println("---------------"); 
+             /*Eğer dizinin boyutu değişken olarak tanımlanacaksa Final olarak belirtilmelidir.
+              *(Bu kelime buradaki kullanımda sadece ilk tanımlandığı değeri değiştirilemez olarak oluşturur.)
+              *Aksi durumda değişken değiştirilebilir. new int[10] satırı çalıştığında hafızada 10 integer boyuntunda yer açılmıştır.
+              *Bu durum doğrudan genişletilemez.(dolaylı yollar var)
+              */        
+    
+              //final int boyut = 5; yazmalıyız.
+              int boyut = 5 ;
+              int[] dizi3=new int[boyut];
+    
+              dizi3[0]=5;
+              dizi3[1]=6;
+              dizi3[4]=9;
+    
+              System.out.println("0. indeks: "+dizi3[0]);
+              System.out.println("1. indeks: "+dizi3[1]);
+              System.out.println("4. indeks: "+dizi3[4]);
+              System.out.println("3. indeks: "+dizi3[3]);
+    
+              boyut=10;
+              dizi3[9]=33;
+              //ArrayIndexOutOfBoundsException hatası verecek satır.
+              System.out.println("9. indeks: "+dizi3[9]);
+    
+        }
+    }
+    }
+
+
+
+
+**Uygulamanın Çıktısı;**
+
+
+
+
+    
+    0. indeks: 5
+    1. indeks: 6
+    4. indeks: 9
+    9. indeks: 33
+    3. indeks: 0
+    ---------------
+    0. indeks: 5
+    1. indeks: 6
+    4. indeks: 9
+    9. indeks: 33
+    3. indeks: 0
+    ---------------
+    0. indeks: 5
+    1. indeks: 6
+    4. indeks: 9
+    3. indeks: 0
+    Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 9
+        at DiziOrnek.main(DiziOrnek.java:57)
+
+
+

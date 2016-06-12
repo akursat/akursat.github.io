@@ -1,0 +1,124 @@
+---
+author: akursat
+comments: true
+date: 2014-11-08 08:12:33+00:00
+layout: post
+link: http://akursat.com/?p=81
+slug: 11-siniflar
+title: 11 - Sınıflar
+wordpress_id: 81
+categories:
+- Java
+- Java Se
+tags:
+- constuctor
+- extends
+- field
+- java
+- java dersleri
+- kalıtım
+- metot
+- sınıf
+- yapılandırıcı
+---
+
+** Sınıf****,** nesneler için bir şablondur.Basitçe anlatmak gerekirse tanımladığımız her bir nesne tanımladığımız şablona uyarak oluşur.
+Sınıflar genelde aşağıdaki yapıyı içerir.Kodları detaylı incelemenize gerek yok sadece genel bir sınıf yapısını açısından incelemeniz yeterli.Bu yapıların neler ifade ettiğini diğer bölümlerde adım adım değineceğiz.
+
+
+
+
+Yazı içerisinde kullanılan field kavramını açıklayalım.**Field**,bir sınıfın(class {...}) içerisinde bulunan ve metot veya constuctorın dışında bulunan değişkendir.(bu şartları sağlayan değişken(variable) = field)
+Metot veya constuctor içerisindeki değişkenlere yerel(local) değişkenler denir.Şuanlık bu iki terimin bilinmesi yeterli bir sonraki derslerde bu durumu daha iyi anlayacaksınız.
+
+
+
+
+
+    
+    package com.siniflar;
+    
+    /**
+     * @author akursat
+     * @site www.akursat.com
+     */
+    public class Bisiklet {
+    
+    	// Bisiklet sınıfı üç fielde sahip.
+    	private int kadans;
+    	private int vites;
+    	private int hiz;
+    
+    	// Bisiklet sınıfı bir Constructora sahip
+    	public Bisiklet(int kadansBaslat, int vitesiBaslat, int hiziBaslat) {
+    		vites = vitesiBaslat;
+    		kadans = kadansBaslat;
+    		hiz = hiziBaslat;
+    	}
+    
+    	// Bisiklet sınıfı dört metoda sahip.
+    	public void setKadans(int kadans) {
+    		this.kadans = kadans;
+    	}
+    
+    	public void setVites(int vites) {
+    		this.vites = vites;
+    	}
+    
+    	public void frenUygula(int azalt) {
+    		hiz -= azalt;
+    	}
+    
+    	public void hizArtir(int artir) {
+    		hiz += artir;
+    	}
+    
+    }
+
+
+
+
+
+
+
+Bisiklet sınıfının bir altsınıfı (subclass) olarak tanımlanan DagBisikleti sınıfı şu şekilde ;
+
+
+
+
+
+    
+    package com.siniflar;
+    
+    /**
+     * @author akursat
+     * @site www.akursat.com
+     */
+    public class DagBisikleti extends Bisiklet {
+    	// DagBisikleti altsınıfı(subclass) bir fielde sahip
+    	private int koltukBoyutu;
+    
+    	// DagBisikleti altsınıfı bir constructora sahip
+    	public DagBisikleti(int boyuBaslat, int kadansiBaslat, int vitesiBaslat,
+    			int hiziBaslat) {
+    
+    		super(kadansiBaslat, vitesiBaslat, hiziBaslat);
+    		koltukBoyutu = boyuBaslat;
+    	}
+    
+    	// DagBisikleti altsınıfı bir metoda sahip
+    	public void setKoltukBoyutu(int yeniBoyut) {
+    		koltukBoyutu = yeniBoyut;
+    	}
+    
+    }
+
+
+
+
+DagBisikleti sınıfı Bisiklet sınıfından türetilmiştir.(...extends Bisiklet) Bundan dolayı Bisiklet sınıfında bulunan fieldları(hiz,vites,kadans) ve metotları kalıtımla kazanmıştır.(inherit)Bisiklet sınıfına ek olarak koltukBoyutu field ve metoduna sahiptir.(Dağ bisikletinin diğer bisikletlerden farklı olarak, arazi yapısına uygun koltuk boyutunu ayarladığını düşünün.)
+
+
+
+
+Bu kısımda geçen terimleride tek tek açıklayacağım kısaca göz attıysanız Sınıfların Tanımlanmasıyla başlayabilirsiniz.

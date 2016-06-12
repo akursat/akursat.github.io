@@ -1,0 +1,93 @@
+---
+author: akursat
+comments: true
+date: 2014-11-08 08:29:06+00:00
+layout: post
+link: http://akursat.com/?p=99
+slug: 12-nesneler
+title: 12 – Nesneler
+wordpress_id: 99
+categories:
+- Java
+- Java Se
+tags:
+- class
+- java
+- java dersleri
+- nesne
+- sınıf
+---
+
+    Programlama dillerindeki nesne kavramı gerçek hayattaki nesne kavramına benzer. Örneğin bir kediyi ele alalım, özellikleri - ismi, rengi ve davranışları - miyavlama, koşusu
+Programlamada benzer şekilde nesnelerin özellikleri ve davranışları vardır.Bu özellikleri fieldler tarafından gösterilirken davranışları ise metotlar ile gösterilir.
+
+    
+    public class Kedi {
+    	String isim;
+    	String renk;
+    	
+    	public void miyavlama() {
+    	}
+    
+    	public void kosus() {
+    	}
+    
+    }
+
+
+Yukarıdaki örnekte Kedi sınıfını oluşturduk.Bir nesnenin neler içerdiğinin kafamızda canlanması açısından bu örneği verdim.Bir sonraki örnekle yazıya devam edeceğiz.
+
+Aşağıdaki örnekte üç nesne oluşturduk bunlar baslangicNoktasi1,dikdortgen1 ve dikdortgen2.
+
+    
+    public class NesneOrnek {
+    
+    	public static void main(String[] args) {
+    
+    		// Bir point nesnesi ve iki dikdörgen nesnesi oluşturduk.
+    		Point baslangicNoktasi1 = new Point(23, 94);
+    		Dikdortgen dikdortgen1 = new Dikdortgen(baslangicNoktasi1, 100, 200);
+    		Dikdortgen dikdortgen2 = new Dikdortgen(50, 100);
+    
+    		// dikdortgen1 genisliğini,yüksekliğini ve alanını gösterir
+    		System.out.println("dikdortgenBir genişliği: " + dikdortgen1.genislik);
+    		System.out
+    				.println("dikdortgenBir yüksekliği: " + dikdortgen1.yukseklik);
+    		System.out.println("dikdortgenBir alanı: " + dikdortgen1.getArea());
+    
+    		// dikdortgen2 konumunu ayarlar
+    		dikdortgen2.baslangicNoktasi = baslangicNoktasi1;
+    
+    		// dikdortgen2 konumunu gösterir
+    		System.out.println("dikdortgen2 nin X konumu: "
+    				+ dikdortgen2.baslangicNoktasi.x);
+    		System.out.println("dikdortgen2 nin Y konumu: "
+    				+ dikdortgen2.baslangicNoktasi.y);
+    
+    		// dikdortgen2 hareket etttirir ve yeni konumu gösterir
+    		dikdortgen2.move(40, 72);
+    		System.out.println("dikdortgen2 nin X konumu: "
+    				+ dikdortgen2.baslangicNoktasi.x);
+    		System.out.println("dikdortgen2 nin Y konumu: "
+    				+ dikdortgen2.baslangicNoktasi.y);
+    	}
+    }
+
+
+Bu program çeşitli nesneler oluşturuyor,manipüle ediliyor ve bu nesneler hakkında bilgi veriyor.
+Çıktı şu şekilde:
+
+    
+    dikdortgenBir genişliği: 100
+    dikdortgenBir yüksekliği: 200
+    dikdortgenBir alanı: 20000
+    dikdortgen2 nin X konumu: 23
+    dikdortgen2 nin Y konumu: 94
+    dikdortgen2 nin X konumu: 40
+    dikdortgen2 nin Y konumu: 72
+    
+
+
+Bir sonraki iki yazıda bu örnek üzeriden nesnelerin nasıl oluşturulacağını ve kullanılacağını göreceğiz.Örneği tamamen kavramanıza gerek yok incelemeniz yeterli.Örnekte kullanılan Dikdörtgen sınıfı ve detayları sonraki yazıda yer alacak.
+
+

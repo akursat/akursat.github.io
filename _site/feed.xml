@@ -6,124 +6,959 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Jun 2016 12:14:32 +0300</pubDate>
-    <lastBuildDate>Sun, 12 Jun 2016 12:14:32 +0300</lastBuildDate>
+    <pubDate>Sun, 12 Jun 2016 12:41:46 +0300</pubDate>
+    <lastBuildDate>Sun, 12 Jun 2016 12:41:46 +0300</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
-        <title>1 - Java’nın Tarihi</title>
-        <description>&lt;p&gt;Tarihi etkileyen her teknoloji, arkasında uzun bir süreç barındırıyor. Java günümüzde yaygın kullanılan dillerden birisi. Javayı öğrenmek isteyen yazılımcılar için Java’nın 1990’dan günümüze ne gibi değişimler geçirdiğine bakalım.&lt;/p&gt;
+        <title>13.7 - static ve static olmayan bloklar</title>
+        <description>&lt;h2 id=&quot;blok-kullanmadan-initialize&quot;&gt;Blok kullanmadan initialize&lt;/h2&gt;
 
-&lt;h3 id=&quot;lk-admlar&quot;&gt;1991 – İlk Adımlar&lt;/h3&gt;
+&lt;p&gt;Bildiğiniz gibi değişkenleri aşağıdaki örnekteki gibi initialize edebiliriz.&lt;/p&gt;
 
-&lt;p&gt;Geleceğin teknolojilerini belirlemek amacıyla Sun Microsystems ‘The Stealth Team’ adında bir takım kurdu. (daha sonra ‘The Green Team’ olarak ismi değiştirildi) James Gosling, Mike Sheridan ve Patrick Naughton liderliğinde kurulan ekip Haziran 1991’de Oak dili projesini başlattı. James Gosling ofisinin önünde duran meşe ağacından esinlenerek Oak ismini verdi.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Test{
+    public int nesneSayisi = 0;
+    private boolean  cevap  = true; 
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;h3 id=&quot;zamann-tesinde&quot;&gt;1992-1994 – Zamanın Ötesinde&lt;/h3&gt;
+&lt;p&gt;Atanacak değer erişilebilir olduğunda bu yöntem kullanılabilir. Eğer atama işlemi bazı mantık işlemleri içeriyorsa (bir dizinin doldurulması ya da hata yönetimi gibi) constructor içerisinde initialize etmemiz mantıklı olacaktır.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.akursat.com/wp-content/uploads/2013/06/gosling.duke_.jpg&quot;&gt;&lt;img src=&quot;http://www.akursat.com/wp-content/uploads/2013/06/gosling.duke_.jpg&quot; alt=&quot;gosling.duke&quot; /&gt;&lt;em&gt;James Gosling&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Aynı yeteneği static değişkenlerde sağlamamız için static bloklar vardır. Bildiğiniz gibi static değişkenler için bu işlemi constrator içerisinde initialize etmemiz çok mantıksız olacaktır. Bu durumu kavramadıysanız bir önceki static değişkenler konusuna gözatın.&lt;/p&gt;
 
-&lt;p&gt;1992 yazında takım kendi platformlarının bir kısmını gösterir. Proje işletim sistemi, Oak dili, kütüphane ve donanım içeriyordu. O yılın eylül ayında Star7 PDA sunularak bağımsız programlama dili başarıyla tanıtıldı. James Gosling Star7 PDA tanıtımına ait eski bir videosu;(yıl 1992 dokunmatik ekran)  Star 7’nin asıl amacı interaktif televizyondu. Zamanın ötesinde bir projeydi , sonuç vermedi. Şirket Sun’a tekrar geri döndü. 1993’de Green Team tamamıyla Sun Microsystems’e katıldı. Bu süreç sonunda grubun Sun’da önemi web teknolojilerine yöneldi. &lt;a href=&quot;http://www.akursat.com/wp-content/uploads/2013/06/brdc-poster.jpg&quot;&gt;&lt;img src=&quot;http://www.akursat.com/wp-content/uploads/2013/06/brdc-poster.jpg&quot; alt=&quot;brdc-poster&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;static-bloklar&quot;&gt;static bloklar&lt;/h2&gt;
 
-&lt;p&gt;Zamanın tarayıcıları hareketli resim vb. içeriklere izin vermiyordu.1994 yılında takım bir an geleceği görerek hareketli objeleri destekleyen ilk tarayıcıyı oluşturdu.Java’nın maskotu Duke’in appletide böylece yayınlanmış oldu. Mühendis Patrick Naughtion ve Jonathan Payne Oak dilini kullanarak WebRunner’ı yazdılar(kült film Blade runner’dan esinlenerek),daha sonra HotJava olarak adlandırıldı. Oak isminin ticari olarak kullanılmayacağı ortaya çıkmıştı. Sun Oak için isim arayışına başladı. Sun içinde yapılan oylamayla Java, DNA ve Silk adları arasında seçim yapılması istendi ve bu seçim sonunda Java galip geldi. Böylece Java tarihe adını yazdırmış oldu.&lt;/p&gt;
+&lt;p&gt;static bloklar normal blokların önüne static konulmasıyla oluşan bloklardır.&lt;/p&gt;
 
-&lt;h3 id=&quot;hello-internet&quot;&gt;&lt;strong&gt;1995 - Hello Internet&lt;/strong&gt;&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;static {
 
-&lt;p&gt;Önceki yılın yeniden değerlendirmenin ardından Java ,World Wide Web’i hedefledi. Java ilk public sürümüne kavuştu. HotJava tarayıcısı Java 1.0a2 ile tamamlandı ve 23 Mayıs 1995’de çıktı. Sürpriz bir duyuruyla NetScapede çalışması sağlandı.&lt;/p&gt;
+// kodlar buraya gelecek
 
-&lt;h3 id=&quot;hello-jdk&quot;&gt;&lt;strong&gt;1996 – Hello JDK&lt;/strong&gt;&lt;/h3&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;23 Ocak 1996’da ilk JDK yayınlandı. Aynı zamanda 1996 yılında ilk JavaOne konferansı düzenlendi.&lt;/p&gt;
+&lt;p&gt;Bir sınıfta birden fazla static blok bulunabilir. Static bloklar kaynak koddaki yer alan sıralarıyla yürütülürler. static bloklar constructor gibi sınıf oluşturulduğunda yürütülürler. Constructor’lardan önce yürütülür. Bu bloklar static değişkenleri initialize etmek için kullanılabilirler.&lt;/p&gt;
 
-&lt;h3 id=&quot;javabeans&quot;&gt;&lt;strong&gt;1997 - JavaBeans&lt;/strong&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;static-olmayan-bloklar&quot;&gt;static olmayan bloklar&lt;/h2&gt;
 
-&lt;p&gt;Bir yığın değişiklik içeren ilk büyük yenilik geldi.AWT event modeli kapsamlı bir düzenlemeye uğradı,inner classlar ve JavaBean dile eklendi.&lt;/p&gt;
+&lt;p&gt;Bunlar da constructor’lardan önce yürütülür.&lt;/p&gt;
 
-&lt;h3 id=&quot;kraln-gsterisi&quot;&gt;&lt;strong&gt;1998 – Kralın Gösterisi&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Değişkenleri normalde constructor içerisinde veya yukarıdaki gibi blok kullanmadan initialize ederiz. Buna ek olarak iki farklı yol daha vardır.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.akursat.com/wp-content/uploads/2013/06/Java_Ring.jpg&quot;&gt;&lt;img src=&quot;http://www.akursat.com/wp-content/uploads/2013/06/Java_Ring.jpg&quot; alt=&quot;Java_Ring&quot; /&gt;&lt;/a&gt; Java 2 kalıcı olmaya karar verdi. Daha büyük, daha hızlı ve daha güçlü olma yolundaki adımları hızla tamamladı. Swing, JVM,JIT compiler bu sürümle geldi. JavaOne konferansında JavaRing tanıtıldı. Dönemin hayli ilgisini çeken JavaRing giyilebilir bir bilgisayardı.&lt;/p&gt;
+&lt;p&gt;Birincisi static olmayan bloklar.&lt;/p&gt;
 
-&lt;h3 id=&quot;herey-mimariyle-lgili&quot;&gt;&lt;strong&gt;1999 - Herşey Mimariyle İlgili&lt;/strong&gt;&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-&lt;p&gt;Yılın büyük duyurusu Sun’dan geldi Java platformunun mimarisi yeniden tanımlanıyordu. Tüm bu birikimin sonucunda Java platformu geliştiricilere kolaylaştırıldı, tedarikçi ve üreticiler belirli marketleri hedef aldı. Java 2 Standard Edition(J2SE) Desktop ve Workstation cihazlarına, Enterprise Edition(J2EE) heavy-duty server sistemleri için uygun hale getirildi.&lt;/p&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//kodlar&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;buraya&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;gelecek&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-&lt;h3 id=&quot;apple-ile-anlama&quot;&gt;&lt;strong&gt;2000 – Apple ile anlaşma&lt;/strong&gt;&lt;/h3&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;2000’lere gelindiğinde, Java teknolojisinden yararlanan Hotspot JVM tanıtıldı.Apple co-founder ve Ceo’su Steve Jobs her yeni Mac OS X sürümünde J2SE paketi olacağını söyledi.Bildiğimiz Java ekosisteminin başlangıcı böylece başlamış oldu.&lt;/p&gt;
+&lt;p&gt;Java static olmayan blokları her bir constructor’a kopyalar. Static olmayan bu blokları kullanılarak çok sayıdaki constructor için aynı initialize işlemini yapmamıza gerek kalmaz.&lt;/p&gt;
 
-&lt;h3 id=&quot;topluluu-sev&quot;&gt;&lt;strong&gt;2001 – Topluluğu Sev&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Şimdi bu öğrendiklerimizi örnek üzerinde uygulayalım.&lt;/p&gt;
 
-&lt;p&gt;JCP, Java platformuna gelecek yenilikleri ve değişimleri oylanmasını sağlayan kuruluş. Oylama sisteminde Google, Nokia, RedHat, Twitter, IBM, Ericson gibi kuruluşlardan katılımcıları barındırıyor. Örnek JSR 345(Enterprise JavaBean 3.2) oylamasını şuradan görebilirsiniz &lt;a href=&quot;http://www.jcp.org/en/jsr/results?id=5430&quot;&gt;http://www.jcp.org/en/jsr/results?id=5430&lt;/a&gt; Java Community Process (JCP) sayesinde J2SE şekil adlı ve J2EE’nin yeni sürümünün tanımlanmasına yardım etti.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Test{
+    static
+    {
+        System.out.println(&quot;Static Blok&quot;);
+    }
+    
+    {
+        System.out.println(&quot;Static Olmayan Blok&quot;);
+    }
+    
+    public Test() {
+        System.out.println(&quot;Test...&quot;);
+    }
+    public static void main(String[] args) {
+        Test t1 = new Test();
+        Test t2 = new Test();
+    }
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;h3 id=&quot;merlin&quot;&gt;&lt;strong&gt;2002 - Merlin&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Örneğimizin çıktısı şu şekilde:&lt;/p&gt;
 
-&lt;p&gt;Merlin, Java Community Process ’in ilk yayınıdır (JSR 59). JCP ilk kez, kullanıcıların aktif olarak Java’nın özellikleri ve yönelim ininde karar vermesine izin verdi.&lt;/p&gt;
-
-&lt;h3 id=&quot;java-card&quot;&gt;&lt;strong&gt;2003 - Java Card&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;Sun başkanı ve Ceo’su Scottt McNealy Java Card’ın avantajlarını tanıttı, kullanıcının bir servera nasıl güvenli şekilde erişebileceğini gösterdi.&lt;/p&gt;
-
-&lt;h3 id=&quot;ak-kaynak-m-olmal&quot;&gt;&lt;strong&gt;2004 – Açık kaynak mı olmalı&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.akursat.com/wp-content/uploads/2013/06/duke-n-friends.png&quot;&gt;&lt;img src=&quot;http://www.akursat.com/wp-content/uploads/2013/06/duke-n-friends.png&quot; alt=&quot;duke-n-friends&quot; /&gt;&lt;/a&gt; 
-J2SE 1.5, kod adı Tiger, birçok yeni ve gelişmiş özellik içeriyordu. Java dili en önemli düzenlemelerden birini geçirdi.Generics, Metadata, Autoboxing, Enumerations ve Varargs gibi özellikler eklendi. Java’nın açık kaynak(open source) olup olmaması üzerine büyük bir tartışma başladı. .Net dili hızla gelişiyor ve Java’nın buna karşı önlem alması gerekiyordu. Linux gibi gönüllerin geliştirdiği bir kitlesi de bulunmayan Java için zorlu bir süreç başladı. Sun’ın karar verme zamanıydı.&lt;/p&gt;
-
-&lt;h3 id=&quot;kod-ad-mustang&quot;&gt;&lt;strong&gt;2006 - Kod adı Mustang&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;Tartışmaların ardından, Java açık kaynak geliştirilmeye ve GNU (General Public License) altında kullanılmaya başladı. Sun J2SE ‘nin adını Java SE olarak değiştirdi.Java 6’nın (kod adı Mustang) beta sürümü erişilebilir hale geldi.&lt;/p&gt;
-
-&lt;h3 id=&quot;hello-javafx&quot;&gt;&lt;strong&gt;2007 - Hello JavaFX&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;Java tabanlı teknolojilerin yeni üyesi JavaFx geldi. JavaFx web site ve uygulamaların tasarımını kolaylaştırmak ve zenginleştirmek için yapıldı.&lt;/p&gt;
-
-&lt;h3 id=&quot;blu-ray&quot;&gt;&lt;strong&gt;2008 - Blu-Ray&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;BD-J(Blu-ray Disk Java) sayesinde bonus ve indirilebilir içerikler yönetilir hale geldi. BD oynatıcıların yüzde yüzü Java destekli satılıyor.&lt;/p&gt;
-
-&lt;h3 id=&quot;oracle-dnemi-balyor&quot;&gt;&lt;strong&gt;2009 – Oracle Dönemi Başlıyor&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.akursat.com/wp-content/uploads/2013/06/sunrip.jpg&quot;&gt;&lt;img src=&quot;http://www.akursat.com/wp-content/uploads/2013/06/sunrip.jpg&quot; alt=&quot;sunrip&quot; /&gt;&lt;/a&gt; IBM Sun’ı satın almak için anlaşmış, fakat taraflar vazgeçmiştir. Oracle, Sun Microsystems’i 7.4 milyar dolara satın alır.&lt;/p&gt;
-
-&lt;h3 id=&quot;deiimler&quot;&gt;&lt;strong&gt;2010 - Değişimler&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;James Gosling Oracle’dan ayrılmaya karar verdi ve JDK 7’de çok az değişim olduğunu söyler. Java’nın sonraki iki sürümünün değişikleri onaylandı.Açık kaynak uygulaması OpenJDK projesine devredildi.&lt;/p&gt;
-
-&lt;h3 id=&quot;kod-ad-dolphine&quot;&gt;&lt;strong&gt;2011 – Kod Adı Dolphine&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;Oracle altında Java SE’nin 5 yıldır yayınlanan ilk büyük sürümü oldu. JVM dinamik dilleri destekler hale getirildi.(python, matlab vb) JDK 7’de gelmesi planlanan yığınla yenilik JDK 8’e aktarıldı.&lt;/p&gt;
-
-&lt;h3 id=&quot;javaee-7&quot;&gt;&lt;strong&gt;2013 - JavaEE 7&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;JavaEE 7 tanıtıldı. Önemli gelişmeleri kısaca şöyle; &lt;a href=&quot;http://www.akursat.com/wp-content/uploads/2013/06/javaee7.png&quot;&gt;&lt;img src=&quot;http://www.akursat.com/wp-content/uploads/2013/06/javaee7.png&quot; alt=&quot;javaee7&quot; /&gt;&lt;/a&gt; Çoğu teknoloji üzerinde Html5 desteği JMS (Java Message Service) 2.0 API yayınlandı Java API for RESTful Web Services (JAX-RS) 2.0 yayınlandı Servlet 3.1 artık I/O izin veriyor ve birçok güvenlik geliştirmesi sağlanmış.(&lt;a href=&quot;http://bit.ly/1bMF1DR&quot;&gt;http://bit.ly/1bMF1DR&lt;/a&gt;)&lt;/p&gt;
-
-&lt;h3 id=&quot;ve-sonras&quot;&gt;&lt;strong&gt;2014 ve Sonrası&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;Java SE 8 2014 yılında yayınlanması bekleniyor. Java SE 8’de lambda expression ve bir söylentiye göre clousere desteğine kavuşacağız. Java piyasaya hükmeden bir dil. Birçok framework desteği ve gelecek yenilikleri piyasada uzun süre daha bizlerle olacağını gösteriyor.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Static Blok
+Static Olmayan Blok
+Test...
+Static Olmayan Blok
+Test...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </description>
-        <pubDate>Sun, 19 Oct 2014 18:23:14 +0300</pubDate>
-        <link>http://yourdomain.com/java/java%20se/2014/10/19/hello-world.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2014/10/19/hello-world.html</guid>
+        <pubDate>Fri, 05 Feb 2016 21:48:16 +0200</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2016/02/05/13-7-static-ve-static-olmayan-bloklar.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2016/02/05/13-7-static-ve-static-olmayan-bloklar.html</guid>
         
-        <category>apple</category>
+        <category>blok</category>
         
-        <category>blade runner</category>
-        
-        <category>james gosling</category>
+        <category>initialize</category>
         
         <category>java</category>
         
-        <category>java beans</category>
+        <category>java dersleri</category>
+        
+        <category>scope</category>
+        
+        <category>static</category>
+        
+        
+        <category>Java</category>
+        
+        <category>Java Se</category>
+        
+      </item>
+    
+      <item>
+        <title>13.6 - static metotlar ve sabitler</title>
+        <description>&lt;p&gt;public class Bisiklet { &lt;br /&gt;
+        private int kadans;
+        private int vites;
+        private int hiz;
+        private int id;
+        private static int bisikletSayisi = 0;    &lt;br /&gt;
+       public Bisiklet(int kadansBaslat, int vitesiBaslat, int hiziBaslat) {
+          vites = vitesiBaslat;
+          kadans = kadansBaslat;
+          hiz = hiziBaslat;
+            // önce bisiklet sayısını artır sonra id’ye ata.
+            id = ++bisikletSayisi;
+        }
+        // id’yi dönder
+        public int getID() {
+            return id;
+        }
+            …
+    }&lt;/p&gt;
+
+&lt;h2 id=&quot;static-metotlar&quot;&gt;Static metotlar&lt;/h2&gt;
+
+&lt;p&gt;Java programlama dili static değişkenlerin yanında static metotları da destekler. Static metotlar çoğunlukla static değişkenleri çağırmak için kullanılır. Yukarıdaki Bisiklet sınıfı için şu metodu yazabiliriz.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static int bisikletSayisiniGetir( {
+return bisikletSayisi;      
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;Static metotlar sınıf adıyla doğrudan çağrılabilir.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Bisiklet.bisikletSayisiniGetir()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;static metotlar yine static değişkenler gibi nesneyle de çağırabilirsiniz ama bu yöntem tavsiye edilmez.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bisiklet1.bisikletSayisiniGetir()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;static olmayan metotlar static olmayan değişkenlere ve metotlara doğrudan erişebilir.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;static olmayan metotlar static değişkenlere ve static metotlara da doğrudan erişebilir.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;static metotlar static değişkenlere ve static metotlara doğrudan erişebilir.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;static metotlar static olmayan metotlara ve static olmayan değişkenlere doğrudan erişemez. Erişebilmesi için referans kullanması gerekir.(bisiklet1.bisikletSayisiniGetir() olduğu gibi)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ayrıca this’i static metot içerisinde kullanamayız.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;sabitler&quot;&gt;Sabitler&lt;/h2&gt;
+
+&lt;p&gt;Static ile final kelimelerinin birleşimi sabit tanımlamak için kullanılır. final, değişkenin değerinin değişmeyeceğini belirtir.
+Aşağıdaki örnekte PI adli bir sabit oluşturduk.Bu değişkenin değeri yaklaşık pi değerini almıştır.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;static final double PI = 3.14159265358;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bu şekilde tanımlanan sabitler tekrar atanamaz. Eğer bunu yapmayı denerseniz derleyici hatası alırsınız. Derleyici sabitin isminin geçtiği her yeri girdiğiniz sabit değerinizle değiştirir.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 30 Jan 2016 16:38:28 +0200</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2016/01/30/13-6-static-metotlar-ve-sabitler.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2016/01/30/13-6-static-metotlar-ve-sabitler.html</guid>
+        
+        <category>constant</category>
+        
+        <category>final</category>
+        
+        <category>java</category>
         
         <category>java dersleri</category>
         
-        <category>java ee</category>
+        <category>metot</category>
         
-        <category>javafx</category>
+        <category>sabitler</category>
         
-        <category>jdk</category>
+        <category>static</category>
         
-        <category>sun microsystems</category>
         
-        <category>swing</category>
+        <category>Java</category>
         
-        <category>tarih</category>
+        <category>Java Se</category>
+        
+      </item>
+    
+      <item>
+        <title>13.5 - static kullanımı</title>
+        <description>&lt;p&gt;Bu bölümde static ile oluşturulmuş değişken ve metotları inceleyeceğiz.
+Bir sınıftan birden fazla nesne oluşturduğunuzda bu her nesneye ait değişkenlerin birer kopyası oluşur. Her biri için bellekte ayrı yer oluşturulur. Örneğin daha önce kullandığımız Bisiklet sınıfından bisiklet1 ve bisiklet2 adında iki nesne oluşturursak bu iki nesnede kendisine ait hiz ve vites gibi değişkenlere sahip olacaktır. Yani bellekte iki tane hiz ve vites değişkeni yer alacaktır.
+Bazen bir değişkenin tüm nesneler için ortak olmasını isteyebilirsiniz. İşte bu durum static ile sağlanır. static kullanan field’ler static field veya class field olarak adlandırılır.  static olmayan field’ler nesneyle ilişkiliyken static field’ler sınıfla ilişkilidir.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;Bellekte sabit yeri olan static değişkenini, bir sınıfın her bir nesnesi paylaşır. Herhangi bir nesne bu değişkenin değerini değiştirebilir. Ayrıca static değişkenlerin değerleri nesne oluşturmadan da değiştirilebilir.
+Örneğin birden fazla Bisiklet nesnesi oluşturmak ve her birine bir seri numarası atamak istediğimizi düşünelim. Bu id numarası her bir nesne için eşsiz olsun. Aynı zamanda kaç tane Bisiklet nesnesi oluşturulduğunu tutalım ki bunu kullanarak bir sonraki id belirleyelim.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Bisiklet {
+        
+    private int kadans;
+    private int vites;
+    private int bisiklet;
+        
+    // nesnenin id’sini tutan değişken
+    private int id;
+    
+    // oluşturulan her bir bisiklet nesnesini tutan static değişken
+    private static int bisikletSayisi = 0;
+        ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;static değişkenler sınıfın kendi ismiyle çağrılabilirler&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Bisiklet.bisikletSayisi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;static değişkenleri aşağıdaki şekilde de çağırabilirsiniz&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Bisiklet bisiklet1 = new Bisiklet()
+bisiklet1.bisikletSayisi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bu yöntem tavsiye edilmez çünkü static değişkenler ile static olmayan değişkenler arasında görülebilir fark bırakmak programcıların işini kolaylaştırır.&lt;/p&gt;
+
+&lt;p&gt;Daha önce kullandığımız Bisiklet sınıfını güncelleyelim. Bisikletin constructor’ını id artırmak için kullanalım.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Bisiklet {
+        
+    private int kadans;
+    private int vites;
+    private int hiz;
+    private int id;
+    private static int bisikletSayisi = 0;
+        
+   public Bisiklet(int kadansBaslat, int vitesiBaslat, int hiziBaslat) {
+       vites = vitesiBaslat;
+       kadans = kadansBaslat;
+       hiz = hiziBaslat;
+
+        // önce bisiklet sayısını artır sonra id’ye ata.
+        id = ++bisikletSayisi;
+    }
+
+    // id’yi dönder
+    public int getID() {
+        return id;
+    }
+        ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bir sonraki ders static metotlarla bu konuyu devam edeceğiz.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 30 Jan 2016 16:25:04 +0200</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2016/01/30/13-5-static-kullanimi.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2016/01/30/13-5-static-kullanimi.html</guid>
+        
+        <category>class field</category>
+        
+        <category>field</category>
+        
+        <category>java</category>
+        
+        <category>java dersleri</category>
+        
+        <category>static</category>
+        
+        <category>static field</category>
+        
+        
+        <category>Java</category>
+        
+        <category>Java Se</category>
+        
+      </item>
+    
+      <item>
+        <title>13.4 - Erişim Belirleyiciler</title>
+        <description>&lt;p&gt;Erişim kontrolü için iki seviye vardır;
+Sınıf seviyesinde - public veya package-private (doğrudan belirtilmez)
+Üye seviyesinde - public, private, protected veya package-private (doğrudan belirtilmez)&lt;/p&gt;
+
+&lt;p&gt;Bir sınıf public ile tanımlanabilir. Bu durumda sınıf  her yerdeki tüm diğer sınıflardan erişebilir. Eğer bir sınıfın belirleyicisi yoksa (default, diğer bir adıyla package-private) sadece kendi içerisindeki paketi içerisinde erişilebilir. (paketler benzer işleri yürüten sınıfların bulunduğu gruplardır daha sonraki derse bundan bahsedilecek)&lt;/p&gt;
+
+&lt;p&gt;Üye seviyesi sınıfın içerisindeki değişken ve metotlar için yapılan bir adlandırmadır.
+Üye seviyesinde public ve package-private yine aynı amaçlar için kullanabilirsiniz. Bunların dışında private ve protected olmak üzere iki erişim belirleyici daha vardır. private üyeye sadece kendi sınıfında erişebileceğini belirtir. protected ise üyenin sadece kendi paketinden erişebileceğini (package-private gibi) ve ayrıca başka bir pakette bu sınıfın bir alt sınıfının erişebileceğini belirtir.&lt;/p&gt;
+
+&lt;p&gt;Aşağıdaki tabloda her bir erişim belirleyiciye hangi seviyeden erişebileceği gösterilmiştir.&lt;/p&gt;
+&lt;table width=&quot;325&quot; style=&quot;height: 235px;&quot; border=&quot;1&quot;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+
+&lt;td&gt;Erişim Belirleyici
+&lt;/td&gt;
+
+&lt;td&gt;Sınıf
+&lt;/td&gt;
+
+&lt;td&gt;Paket
+&lt;/td&gt;
+
+&lt;td&gt;Alt-Sınıf
+&lt;/td&gt;
+
+&lt;td&gt;Her yer
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+
+&lt;td&gt;public
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+
+&lt;td&gt;protected
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+
+&lt;td&gt;H
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+
+&lt;td&gt;-
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+
+&lt;td&gt;H
+&lt;/td&gt;
+
+&lt;td&gt;H
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+
+&lt;td&gt;private
+&lt;/td&gt;
+
+&lt;td&gt;E
+&lt;/td&gt;
+
+&lt;td&gt;H
+&lt;/td&gt;
+
+&lt;td&gt;H
+&lt;/td&gt;
+
+&lt;td&gt;H
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;                Boş kısım package-private’ı temsil ediyor.&lt;/em&gt;&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;Tablodan şunları çıkarabiliriz&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bir sınıf kendi üyelerine hangi erişim belirleyicisi kullanırsa kullansın her zaman erişebilme yetkisine sahiptir.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;private haricindeki erişim belirleyiciler aynı paket içerisindeki sınıflar tarafından erişilebilir.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;public ve protected’a sahip olan üyelerin bulunduğu sınıfın bir alt sınıfı bu üyelere erişebilir.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;public üyesine sahip her bir üye her yerden erişime açıktır.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Erişim belirleyiciler iki yoldan sizi etkiler. Birincisi, başka kaynaktan gelen sınıfları kullanırken (Java platformundaki sınıflar gibi) erişim belirleyiciler bu sınıfların hangi üyelerine erişebileceğinize karar verir. İkincisi, bir sınıf yazdığınızda her bir değişkenin ve her bir metodun hangi erişim seviyesine sahip olacağını belirlemeniz gerekir.&lt;/p&gt;
+
+&lt;p&gt;Erişim Belirleyici Seçerken;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Oluşturduğunuz üye için kullanabileceğiniz en kısıtlayıcı erişim belirleyiciyi kullanın.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;private kullanmamak için bir nedeniz olmadığı sürece private kullanın.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Sabitler(constant) için public kullanmayın.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Sun, 24 Jan 2016 11:34:01 +0200</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2016/01/24/13-4-erisim-belirleyiciler.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2016/01/24/13-4-erisim-belirleyiciler.html</guid>
+        
+        <category>default</category>
+        
+        <category>erişim belirleyici</category>
+        
+        <category>java</category>
+        
+        <category>java dersleri</category>
+        
+        <category>modifier</category>
+        
+        <category>package-private</category>
+        
+        <category>private</category>
+        
+        <category>protected</category>
+        
+        <category>public</category>
+        
+        
+        <category>Java</category>
+        
+        <category>Java Se</category>
+        
+      </item>
+    
+      <item>
+        <title>13.3 - this kullanımı</title>
+        <description>&lt;p&gt;Bir metodun veya constructor’ın içerisinde this kelimesi mevcut nesneyi (kendisini) referans eder. Mevcut nesnenin herhangi bir üyesini metot içerisinde veya constructor’da this ile çağırabilirsiniz.
+Burada mevcut nesne kavramı tam olarak anlaşılmalı. Burada mevcut nesneden kasıt o sınıfın kendisinden oluşacak nesne. Diğer bir deyişle kendisi. Bunun için pyhthon self ifadesini kullanıyor.&lt;/p&gt;
+
+&lt;h2 id=&quot;this-ile-field-arm&quot;&gt;&lt;strong&gt;this ile Field çağırımı&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Field ile bir metot ya da constructor’ın parametresi çakışdığı durumlarda this kullanılır. Bu yöntem çok sık kullanılır.
+Örneğin Point sınıfı aşağıdaki şekilde yazılabilir&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Point {
+    public int x = 0;
+    public int y = 0;
+        
+    //constructor
+    public Point(int a, int b) {
+        x = a;
+        y = b;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;ama aynı zamanda aşağıdaki şekilde de yazabiliriz&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Point {
+    public int x = 0;
+    public int y = 0;
+        
+    //constructor
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Constructur içerisindeki x, field içerisindeki x ile çakıştığından bu sorunu this kullanarak çözdük. Field içerisindeki x’e erişmek için this.x kullandık.&lt;/p&gt;
+
+&lt;h2 id=&quot;this-ile-constructor-kullanma&quot;&gt;&lt;strong&gt;this ile Constructor kullanma&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Bir constructor içerisinde aynı sınıfın diğer constructor’ını çağırabilirsiniz.
+Örneğin;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Dikdortgen {
+    private int x, y;
+    private int genislik, yukseklik;
+        
+    public Dikdortgen() {
+        this(0, 0, 1, 1);
+    }
+    public Dikdortgen(int genislik, int yukseklik) {
+        this(0, 0, genislik, yukseklik);
+    }
+    public Dikdortgen(int x, int y, int genislik, int yukseklik) {
+        this.x = x;
+        this.y = y;
+        this.genislik = genislik;
+        this.yukseklik = yukseklik;
+    }
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bu sınıf birden fazla constructor içeriyor. Her bir constructor Dikdortgen sınıfının değişkenlerini initialize ediyor. Örnekte görüldüğü gibi hiçbir argüman almayan constructor 1x1 boyutlarında ve 0,0 kordinatlarında bir Dikdörtgen oluşturur. İki argüman alan constructor ise dört argüman alan constructor’ı çağırıyor. Bu çağırımı yaparken kordinat değerlerini 0,0 olarak gönderiyor. Daha öncede belirtiğimiz gibi derleyici argüman sayısı ve tipine bakarak hangi constructor’ı çağıracağına karar veriyor.
+Eğer bu yapıyı kullanırsanız diğer constructor çağırımı constructor içerisinde ilk satırda olmalı.&lt;/p&gt;
+
+&lt;p&gt;Bunların dışında da this’in farklı kullanımları vardır.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 20 Jan 2016 16:40:15 +0200</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2016/01/20/13-3-this-kullanimi.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2016/01/20/13-3-this-kullanimi.html</guid>
+        
+        <category>constructor</category>
+        
+        <category>java</category>
+        
+        <category>java dersleri</category>
+        
+        <category>nesne</category>
+        
+        <category>this</category>
+        
+        
+        <category>Java</category>
+        
+        <category>Java Se</category>
+        
+      </item>
+    
+      <item>
+        <title>13.2 – Bir Sınıf ya da Interface’ın Döndürülmesi</title>
+        <description>&lt;p&gt;Eğer bu bölüm kafanızı karıştırırsa atlayın. Interface ve Kalıtım bölümlerini bitirdikten sonra tekrar inceleyin. Bir metot dönüş tipi olarak sınıf ismi kullandığında, &lt;a href=&quot;http://akursat.com/?p=230&quot;&gt;kiminBisikletiDahaHızlı&lt;/a&gt; metodunda yaptığımız gibi, dönen nesnenin tipinin sınıfı ya  dönüş tipinin bir alt sınıfı (subclass) ya da bir sınıfı olmalıdır.&lt;/p&gt;
+
+&lt;p&gt;(Aşağıdaki resimdeki Number sınıfını Sayı olarak, ImaginaryNumber sınıfını da SanalSayı olarak adlandırdım.)&lt;/p&gt;
+
+&lt;p&gt;Örneğin SanalSayı adlı bir sınıfın java.lang.Number sınıfının alt sınıfı olduğunu varsayalım ve o da resimde gösterildiği gibi Object sınıfının alt sınıfıdır.(Java’da tüm sınıflar Object sınıfının alt kümesidir.)&lt;/p&gt;
+
+&lt;p&gt;[caption id=”” align=”aligncenter” width=”146”]&lt;img src=&quot;http://docs.oracle.com/javase/tutorial/figures/java/classes-hierarchy.gif&quot; alt=&quot;&quot; /&gt; SanalSayı için sınıf hiyerarşisi.[/caption]&lt;/p&gt;
+
+&lt;p&gt;Şimdi Sayı tipinde bir dönüşe sahip bir metoda sahip olduğumuzu düşünelim.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public Sayi birSayiDondur() {
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;birSayiDönder metodu bir sanal sayi döndürebilir ama bir “Object” döndüremez. SanalSayı bir sayidir çünkü Sayının alt sınıfıdır. Buna rağmen Object bir Sayı olmak zorunda değildir - String veya başka bir tip olabilir.&lt;/p&gt;
+
+&lt;p&gt;Bir metodu, orijinal metodun bir alt sınıfını döndürecek şekilde tanımlayabiliriz.(override)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public SanalSayi birSayiDondur() {
+        ...
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Yukarıdaki gibi override edilmiş bir metot için; Bir alt sınıftaki metodun dönüş tipi bir üst sınıftaki metodun dönüş tipinden farklı olabilir. Bu teknik “covariant dönüş tipi” olarak adlandırır.&lt;/p&gt;
+
+&lt;p&gt;Interface isimlerini de benzer şekilde dönüş tipi olarak kullanabilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Covariance ve contravariance hakkında detaylı bilgi : &lt;a href=&quot;https://en.wikipedia.org/wiki/Covariance_and_contravariance_%28computer_science%29&quot;&gt;https://en.wikipedia.org/wiki/Covariance_and_contravariance_%28computer_science%29&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 31 Oct 2015 15:55:51 +0300</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2015/10/31/13-2-bir-sinif-ya-da-interfacein-dondurulmesi.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2015/10/31/13-2-bir-sinif-ya-da-interfacein-dondurulmesi.html</guid>
+        
+        <category>contravariance</category>
+        
+        <category>covariance</category>
+        
+        <category>interface</category>
+        
+        <category>java</category>
+        
+        <category>java dersleri</category>
+        
+        <category>kalıtım</category>
+        
+        <category>metot</category>
+        
+        <category>object</category>
+        
+        <category>sınıf</category>
+        
+        
+        <category>Java</category>
+        
+        <category>Java Se</category>
+        
+      </item>
+    
+      <item>
+        <title>13.1 - Metottan Bir Değerin Döndürülmesi</title>
+        <description>&lt;p&gt;Bir metot&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;metottaki tüm kod satırlarını tamamladığında,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;return satırına ulaştığında veya&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;bir hata fırlattığında&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;çağrıldığı kod satırına döner.&lt;/p&gt;
+
+&lt;p&gt;Metodun return (dönüş) tipini metodu tanımlanırken belirtiliriz. Metot içerisinde return satırı bir değeri döndürmek için kullanılır.
+&lt;!-- more --&gt;
+void olarak tanımlamış bir metot bir değer döndürmez. return satırını bulundurma zorunluluğu yoktur ama istenirse bu yapılabilir. Örneğin, bir kontrol yapısında (if-else) metottan çıkış yaparak geri kalan kodun yürütülmesini durdurmak için kullanılır. Basitçe&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;return;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;şeklinde kullanılır.&lt;/p&gt;
+
+&lt;p&gt;Eğer void tanımladığınız bir metotta değer döndürmeye çalışırsanız derleyici hatası alırsınız.
+void tanımlanmayan her metot, bir değer döndüren dönüş tipi barındırmalıdır.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    return donenDeger;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Dönen veri tipi metotta tanımlanan dönüş tipiyle uyumlu olmalıdır. Örneğin geri dönüş tipi boolean tanımlanmış bir metotta integer döndüremezsiniz.&lt;/p&gt;
+
+&lt;p&gt;Daha önceki konularda gördüğümüz bir metot olan getArea() metodu bir integer döndürüyordu.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  // dikdörtgenin alanının hesaplayan metot
+   public int getArea() {
+       return genislik * yukseklik;
+   }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bu metot genislik * yukseklik hesaplayarak bir integer döndürür.
+getArea metodu bir primitif tip döndürür. Bir metot ayrıca bir referans tipide döndürebilir. Daha önce yazdığımız Bisiklet sınıfı kullanan referan tipi döndüren bir metot yazalım;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public Bisiklet kiminBisikletiDahaHızlı(Bisiklet bisikletim, Bisiklet bisikletin,
+                             Cevre cevre) {
+   Bisiklet enHizlisi;
+   // girilen bisikletlerden çevre şartlarına
+   // ve bisikletin donanımına göre
+   // en hızlı olanı hesaplayan satırlar
+   return enHizlisi;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 26 Oct 2015 20:37:18 +0300</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2015/10/26/13-1-metottan-bir-degerin-dondurulmesi.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2015/10/26/13-1-metottan-bir-degerin-dondurulmesi.html</guid>
+        
+        <category>java</category>
+        
+        <category>java dersleri</category>
+        
+        <category>metot</category>
+        
+        <category>return</category>
+        
+        <category>void</category>
+        
+        
+        <category>Java</category>
+        
+        <category>Java Se</category>
+        
+      </item>
+    
+      <item>
+        <title>12-3 Garbage Collector</title>
+        <description>&lt;p&gt;&lt;img src=&quot;http://384uqqh5pka2ma24ild282mv.wpengine.netdna-cdn.com/wp-content/uploads/2015/04/GCDuke.png&quot; alt=&quot;&quot; /&gt;Bazı nesneye dayalı diller tüm oluşturduğunuz nesneleri takip etmenizi ve ihtiyacınız olmadığında yok etmenizi gerektirir. Hafızayı kendi başınıza yönetmek tedirginlik ve hataya düşmeye sebep oluşturabilir. Java platformu istediğiniz kadar nesne oluşturmanıza izin verir (elbette sisteminizin üstesinden gelebileceği kadar), ve onları yok etmeniz için endişelenmenize gerek yok. JRE nesneleri daha fazla kullanılmayacağına karar verdiğinde onları siler. Bu sürecin adına “garbage collection” denir.
+&lt;!-- more --&gt;
+Bir nesne referans barındırmadığında garbage collection için uygun hale gelir. Referanslar genellikle değişken scope’ın dışına çıktığında sonlanır. Bazen bir değişkene null değerini atayarak da nesnenin referansını sonlandırabilirsiniz.  Bir programda aynı nesneye birden fazla referans olabileceğini hatırlayın; bu nesnenin garbage collection’a uygun olabilmesi  tüm bu referanslarının sonlanması gerekir.&lt;/p&gt;
+
+&lt;p&gt;JRE, referansa sahip olmayan nesnelerce kullanılan hafızayı belirli aralıklarla boşaltan bir garbage collector’a sahiptir. Garbage collector işini doğru zaman olduğuna karar verdiğinde otomatik olarak yapar.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 21 Oct 2015 19:37:28 +0300</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2015/10/21/12-3-garbage-collector.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2015/10/21/12-3-garbage-collector.html</guid>
+        
+        <category>garbage collector</category>
+        
+        <category>java</category>
+        
+        <category>jvm</category>
+        
+        <category>nesne</category>
+        
+        
+        <category>Java</category>
+        
+        <category>Java Se</category>
+        
+      </item>
+    
+      <item>
+        <title>12-2 Nesnelerin Kullanımı</title>
+        <description>&lt;p&gt;Bir nesneyi oluşturduğunuzda onu bir şeyler için kullanmak istersiniz. Field’lerinden birini kullanmak yada değiştirmek isteyebilirsiniz. Yada metotlarından birini belirli işlemleri yerine getirmesi için çağırmak isteyebilirsiniz.&lt;/p&gt;
+
+&lt;h3 id=&quot;nesnenin-fieldlerine-erime&quot;&gt;&lt;strong&gt;Nesnenin Field’lerine erişme&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Nesnelerin field’lerine isimleriyle ulaşılır. Dolayısıyla belirsiz isimler kullanmamalısınız. İsimlendirme kurallarıyla ilgi konuya göz atabilirsiniz.
+Örneğin Dikdortgen sınıfında “genislik” ve “yukseklik” olmak üzere iki değişken tanımlamıştık. Bunları o sınıf içerisinde şu şekilde ekrana yazdırabilirdik.
+&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;System.out.println(“Genişlik ve Yükseklik: &quot; + genislik + &quot;, &quot; + yukseklik);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bu sınıfın dışındaki bir kodda bir nesne referansı kullanarak bu field’lere erişebiliriz. Bu nesne referansını nokta (.) operatörü takip etmelidir.&lt;/p&gt;
+
+&lt;p&gt;nesneninRefaransı.fieldAdı
+Örneğin daha önce kullandığımız &lt;a href=&quot;http://akursat.com/?p=99&quot;&gt;NesneOrnek&lt;/a&gt; adli sınıfta Dıkdortgen adli sınıfın field’lerine erişmiştik.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;System.out.println(&quot;dikdortgenBir genişliği: &quot; + dikdortgen1.genislik);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;nesnenin-metotlarna-erime&quot;&gt;&lt;strong&gt;Nesnenin metotlarına erişme&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Nesne referasını ayrıca bir nesnesin metodunu çağırmak için kullanabilirsiniz. Nesnenin referansına nokta (.) operatörü ekleyerek metotların ismini çağırabilirisiniz. Metodunuza argünmanları parentez içersinde sağlayabilirsiniz. Metodunuz argüman gerektirmiyorsa boş parentez kullanın.&lt;/p&gt;
+
+&lt;p&gt;nesneninReferansı.MetotAdı(Argümanlar);
+veya:
+nesneninReferansı.MetotAdı();&lt;/p&gt;
+
+&lt;p&gt;Örneğin daha önce kullandığımız &lt;a href=&quot;http://akursat.com/?p=99&quot;&gt;NesneOrnek&lt;/a&gt; adli sınıfta Dıkdortgen adli sınıfın metotlarına erişmiştik.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;System.out.println(&quot;dikdortgenBir alanı: &quot; + dikdortgen1.getArea());
+dikdortgen2.move(40, 72);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;İlk metot argünman gerektirmediği için boş parentez kullanıldı. İkinci metot dikdörtgenin x ve y değerlerini değiştiren yani dikdörtgeni hareket ettiren bir metot. Metot iki argüman alıyor bunun için (40, 72) şeklinde yazıldı.&lt;/p&gt;
+
+&lt;h3 id=&quot;new-operatryle-field-ve-metot-kullanm&quot;&gt;&lt;strong&gt;new Operatörüyle Field ve metot kullanımı&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Bir nesnenin field veya metodunu çağırmadan önce onu önceden referansını oluşturmuştuk.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Dikdortgen dikdortgen1 = new Dikdortgen(100, 200);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Yukarıda bu dıkdortgen1  referansını kullanarak getArea() metoduna erişmiştik.&lt;/p&gt;
+
+&lt;p&gt;Bu referansı değişkende tutmadanda erişebiliriz.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int dikdortgeninAlani = new Dikdortgen(100,200).getArea();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Burada new Dikdortgen(100,200) Dikdortgen nesnesinin referansını dönderir. Nokta (.) operatörü kullanarak da getArea() metodunu çağırdık. Dönen hesaplamayı da  dikdortgeninAlani değişkenine atadık. Bunu field’ler içinde yapabilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Burada unutmamanız gereken şey bu satır yürütüldükten sonra Dikdortgen bir referansa sahip olmayacaktır. Çünkü program referansı herhangi bir yere kaydetmedi.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 21 Oct 2015 19:27:31 +0300</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2015/10/21/12-2-nesnelerin-kullanimi.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2015/10/21/12-2-nesnelerin-kullanimi.html</guid>
+        
+        <category>java</category>
+        
+        <category>metot</category>
+        
+        <category>new operatörü</category>
+        
+        
+        <category>Java</category>
+        
+        <category>Java Se</category>
+        
+      </item>
+    
+      <item>
+        <title>12.1 - Nesnelerin Oluşturulması</title>
+        <description>&lt;p&gt;&lt;strong&gt;Point baslangicNoktasi1&lt;/strong&gt; = new Point(23, 94);
+&lt;strong&gt;Dikdortgen dikdortgen1&lt;/strong&gt; = new Dikdortgen(baslangicNoktasi1, 100, 200);
+&lt;strong&gt;Dikdortgen dikdortgen2&lt;/strong&gt; = new Dikdortgen(50, 100);&lt;/p&gt;
+
+&lt;p&gt;Birinci Satır Point sınıfından bir nesne oluştururken. İkinci ve üçüncü satır Dikdortgen sınıfından bir nesne oluşturuyor. Bu üç satırında ortak özellikleri var. Bunlar;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Declaration&lt;/strong&gt;: Kalın yazı ile belirtilen tüm değişken tanımlamaları(declaration) bir nesne tipini ve ismini içeriyor.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Instantiation&lt;/strong&gt;: new bu nesneyi oluşturan Java operatörüdür.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Initialization&lt;/strong&gt;: new operatörünü bir constructor takip eder.(yukarıdaki birinci satırda Point(-,-) ifadesini görebilirsiniz) Bu yeni nesneyi ilklendirecektir. (initialization)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- more --&gt;
+&lt;p&gt;Bu üç kavram havada kalmamalıdır bundan dolayı anladığınıza emin olup ilerlemenizi tavsiye ederim. Bu temel üç ifade kısaca Tanımlar, Oluşturur ve İlklendirir.&lt;/p&gt;
+
+&lt;h3 id=&quot;deikenin-tanmlanmas&quot;&gt;&lt;strong&gt;Değişkenin Tanımlanması&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Point baslangicNoktasi1;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;şeklinde tanımlanan bir değişken bir nesneye atanmadığı sürece belirsiz olacaktır. Yani değişken tanımlamak nesneyi oluşturmaz. new operatörü ile baslangicNoktasini bir nesneye atamalısınız. Aksi taktirde derleyici hatasıyla karşılaşırsınız.&lt;/p&gt;
+
+&lt;p&gt;Bu durumdaki değişkeni şu şekille ifade edelim;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://akursat.com/wp-content/uploads/2015/05/bas1.png&quot;&gt;&lt;img src=&quot;http://akursat.com/wp-content/uploads/2015/05/bas1.png&quot; alt=&quot;bas1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;nesnenin-oluturulmas&quot;&gt;&lt;strong&gt;Nesnenin Oluşturulması&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;new operatörü, yeni bir nesne ve o nesnenin bellekteki referansı için bellekte yer ayırarak bir nesne oluşturur. Ayrıca nesnenin constructor’ını çağırır.&lt;/p&gt;
+
+&lt;p&gt;new operatörü oluşturulan nesne için bir referans döndürür. Bu referans uygun tipte bir değişkene atanır. Örneğin;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Point baslangicNoktasi1 = new Point(23, 94);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Point Sınıfı&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public int x;
+public int y;
+
+public Point(int x, int y)
+   {
+    this.x = x;
+    this.y = y;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Sınıfın tamamını &lt;a href=&quot;http://developer.classpath.org/doc/java/awt/Point-source.html&quot;&gt;buradan&lt;/a&gt; inceleyebilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Burada Point sınıfı benim oluşturduğum bir sınıf değil. Bu sınıf java.awt içerisinde bulunuyor. Bir point (nokta) (x,y) koordinat düzleminde integer olarak bir konumu temsil ediyor. Bir üsteki örneğimizde bu konuma (23,94) argümanları göndermiştik.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Point baslangicNoktasi1 = new Point(23, 94);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bu satır yürütüldükten sonra sonucu şu şekilde gösterebiliriz;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://akursat.com/wp-content/uploads/2015/05/bas2.png&quot;&gt;&lt;img src=&quot;http://akursat.com/wp-content/uploads/2015/05/bas2.png&quot; alt=&quot;bas2&quot; /&gt;&lt;/a&gt;Dört constructor içeren Dikdortgen sınıfının kodu şöyle;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;package com.nesneler;
+
+import java.awt.Point;
+/**
+ *
+ * @author akursat
+ *
+ */
+public class Dikdortgen {
+    public int genislik = 0;
+    public int yukseklik = 0;
+    public Point baslangicNoktasi;
+
+    // dört constructor
+    public Dikdortgen() {
+        baslangicNoktasi = new Point(0, 0);
+    }
+
+    public Dikdortgen(Point p) {
+        baslangicNoktasi = p;
+    }
+
+    public Dikdortgen(int w, int h) {
+        baslangicNoktasi = new Point(0, 0);
+        genislik = w;
+        yukseklik = h;
+    }
+
+    public Dikdortgen(Point p, int w, int h) {
+        baslangicNoktasi = p;
+        genislik = w;
+        yukseklik = h;
+    }
+
+    // dikdörtgeni hareket ettiren metot
+    public void move(int x, int y) {
+        baslangicNoktasi.x = x;
+        baslangicNoktasi.y = y;
+    }
+
+    // dikdörtgenin alanının hesaplayan metot
+    public int getArea() {
+        return genislik * yukseklik;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Eğer bir sınıfta birden fazla constructor varsa onlar farklı signature’lara sahip olmalıdır. Buna daha önce &lt;a href=&quot;http://akursat.com/?p=85&quot;&gt;burada&lt;/a&gt; değinmiştik.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Dikdortgen dikdortgen1 = new Dikdortgen(baslangicNoktasi1, 100, 200);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bu satır Diktortgen sınıfının dördüncü constructor’ını çağırır, baslangicNoktasi1 için baslangicNoktasini ilklendirir. Ayrıca constructor, genisliği 100 ve yüksekliğide 200 olarak ayarlar. Şimdi aynı Point nesnesi için iki referansa sahibiz - bir nesne birden fazla referans alabilir.  &lt;a href=&quot;http://akursat.com/wp-content/uploads/2015/05/bas3.png&quot;&gt;&lt;img src=&quot;http://akursat.com/wp-content/uploads/2015/05/bas3.png&quot; alt=&quot;bas3&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 02 May 2015 21:15:24 +0300</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2015/05/02/12-1-nesnelerin-olusturulmasi.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2015/05/02/12-1-nesnelerin-olusturulmasi.html</guid>
+        
+        <category>java</category>
+        
+        <category>java dersleri</category>
+        
+        <category>java new</category>
+        
+        <category>nesne</category>
+        
+        <category>new</category>
         
         
         <category>Java</category>
