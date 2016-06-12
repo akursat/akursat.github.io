@@ -4,20 +4,46 @@ title: About
 permalink: /about/
 ---
 
-Work Experience
+**Work Experience**
 IBM - Intern
-July 2013 - August 2013 | Istanbul, Turkey 
+*July 2013 - August 2013 | Istanbul, Turkey* 
 
 Primetek - Long Term Intern
-August 2014 - January 2015 | Ankara, Turkey 
+*August 2014 - January 2015 | Ankara, Turkey* 
 
 Hitit Computer Services - Analyst Programmer
-April 2016 - Now | Istanbul, Turkey 
+*April 2016 - Now | Istanbul, Turkey* 
 
 
-Here is my skill set
-Java
-Jsf
-Javascript
+Here is my skill set:
+ - Java
+ - Jsf
+ - Javascript (as oop)
+ - Maven/Gradle
+ - Jpa/Hibernate
+ - Primefaces
+ (Nowadays, I'm learning AngularJs and other js frameworks)
+Here is my own component for Primefaces:
 
+ - github.com/akursat/countdown
 
+Here are some sample project to give you an idea about me:
+
+ - github.com/akursat/log4j-over-slf4j 
+ - github.com/akursat/custom-annotation-example   
+ - github.com/akursat/spring-example github.com/akursat/jaxws-example
+ - github.com/akursat/ejb-remote-example
+ - github.com/akursat/java-nio-example
+
+ 
+Also, I attended contests and get rewarded.
+
+ - IBM Yazılım Akademisi 2013 Juri Özel Ödülü
+ - TÜBİTAK - 2242 Lisans Öğrencileri Yazılım Projeleri Yarışması Üçüncü
+ 
+
+I'm interested in science, space and technology. 
+
+https://goodreads.com/akursat
+https://twitter.com/ademkursatuzun
+http://linkedin.com/in/ademkursatuzun
