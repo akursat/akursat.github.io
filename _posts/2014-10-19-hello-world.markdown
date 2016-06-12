@@ -146,3 +146,4 @@ Oracle altında Java SE’nin 5 yıldır yayınlanan ilk büyük sürümü oldu.
  Çoğu teknoloji üzerinde Html5 desteği JMS (Java Message Service) 2.0 API yayınlandı Java API for RESTful Web Services (JAX-RS) 2.0 yayınlandı Servlet 3.1 artık I/O izin veriyor ve birçok güvenlik geliştirmesi sağlanmış.([http://bit.ly/1bMF1DR](http://bit.ly/1bMF1DR))                 **2014 ve Sonrası** Java SE 8 2014 yılında yayınlanması bekleniyor. Java SE 8’de lambda expression ve bir söylentiye göre clousere desteğine kavuşacağız.
 
 Java piyasaya hükmeden bir dil. Birçok framework desteği ve gelecek yenilikleri piyasada uzun süre daha bizlerle olacağını gösteriyor.
+
