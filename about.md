@@ -17,8 +17,8 @@ Hitit Computer Services - Analyst Programmer
 
 **Here is my skill set:**
 
-* Start a line with a star  
-* Profit!  
+* Java  
+* Jsf  
 * Javascript (as oop)  
 * Maven/Gradle  
 * Jpa/Hibernate  
