@@ -55,3 +55,5 @@ Java 8 kapsayan yazıları bu listeyede ekleyeceğim. Zor bulduğunuz, anlamadı
 	5. [static kullanımı](https://akursat.github.io/java/java%20se/2016/01/30/13-5-static-kullanimi.html)
 	6. [static metotlar ve sabitler](https://akursat.github.io/java/java%20se/2016/01/30/13-6-static-metotlar-ve-sabitler.html)
 	7. [static ve static olmayan bloklar](https://akursat.github.io/java/java%20se/2016/02/05/13-7-static-ve-static-olmayan-bloklar.html)
+
+Kaynaklar: https://docs.oracle.com/javase/tutorial/
