@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>create or view base64</title>
+<title>base64 image encoder & decoder</title>
 
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -18,8 +18,12 @@
 
 <script>
 
-
 $(function() {
+
+ var ctx = $('#mycanvas')[0].getContext('2d');
+ ctx.font = "20px Arial";
+ ctx.fillText("uploaded or decoded",$('#mycanvas')[0].width/5.2, $('#mycanvas')[0].height/2);
+ ctx.fillText("image",$('#mycanvas')[0].width/2.3, 170);
 
 //copy function
 function copyToClipboard(element) {
@@ -30,8 +34,25 @@ function copyToClipboard(element) {
     $temp.remove();
 }
 
+
+$('#decodeArea').bind('click', function(event) {
+	$('#decodeArea').select();
+});
+
 $('#copyButton').bind('click', function(event) {
 	copyToClipboard('.one-line');
+});
+
+$('#viewButton').bind('click', function(event) {
+	if (!$.trim($("#decodeArea").val())) {
+    // textarea is empty or contains only white-space
+	} else{
+		$('#mycanvas').fadeOut( "slow", function() {
+   		$('#decodedImage').show();
+     	$('#decodedImage').attr("src", temp);
+ 	 });
+	}
+	
 });
 
 var temp = undefined;
@@ -49,6 +70,8 @@ $('#toggleButton').bind('click', function(event) {
 });
 
 $('#imageinput').bind('change', function(event) {
+	$('#mycanvas').show();
+	$('#decodedImage').hide();
     var myCanvas = $('#mycanvas')[0];
     var ctx = myCanvas.getContext('2d');
     var img = new Image();
@@ -72,8 +95,19 @@ $('#imageinput').bind('change', function(event) {
 </script> 
 
 <style>
+
+.selectable{
+	-webkit-touch-callout: all; /* iOS Safari */
+	-webkit-user-select: all; /* Safari */
+	-khtml-user-select: all; /* Konqueror HTML */
+	-moz-user-select: all; /* Firefox */
+	-ms-user-select: all; /* Internet Explorer/Edge */
+	user-select: all; /* Chrome and Opera */
+
+}
+
 .one-line{
-	width: 600px;
+	width: 85%;
 	height: 70px;
 	padding: 1em;
     overflow: scroll;
@@ -81,11 +115,22 @@ $('#imageinput').bind('change', function(event) {
 }
 body {
   padding-top: 50px;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
-.create-section {
+
+.create-section{
+	margin-top: 4%;
+}
+.create-section .view-section {
   padding: 40px 15px;
   text-align: center;
+
 }
+
+.image-viewer{
+	padding: 20px;
+}
+
 .navbar-custom {
     background-color:#e74c3c;
     color:#ffffff;
@@ -93,8 +138,10 @@ body {
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 .footer{
-	background-color:#c0392b;
+	background-color:#e74c3c;
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	border-radius:0;
+	color:#ffffff;
 }
 .vcenter {
     display: inline-block;
@@ -105,7 +152,24 @@ body {
 .toggleButton{
     width: 30px;
     height: 30px;
+    margin-right: 10px;
 }
+
+.disableButton{
+	width: 30px;
+    height: 30px;
+}
+.canvas, .decodedImage{
+	border: antiquewhite;
+	border-style: double;
+	margin: auto;
+	display: block;
+}
+
+textarea {
+    resize: none;
+}
+
 </style>
 </head>
 
@@ -113,28 +177,31 @@ body {
 
 <body>
 <nav class="navbar navbar-custom navbar-fixed-top">
+	<a href="https://github.com/akursat/base64"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
 	<div class="container">
 		<div class="text-center">
-			<h4>Base64 encoder & decoder</h3>
+			<h4>Base64 image encoder & decoder</h3>
 		</div>
 	</div>
 </nav>
-
+<div class="col-md-2"></div>
 <div class="container">
 
 	<div class="create-section row">
 		<div class="line-one">
 			<div class="upload-button row">
-				
-				<input type="file" id="imageinput" class="btn btn-default btn-md center-block" />
 
+				<h3 class="text-center">ENCODE</h3>
+				<hr />
+				<input type="file" id="imageinput" class="btn btn-default btn-md center-block" />
+				<hr />
 			</div>
-			<hr />
+			
 			<div class="col-md-2"></div>
 			<div class="row  col-md-8">
-				<button type="button" id="toggleButton" class="glyphicon glyphicon-refresh pull-left vcenter toggleButton"></button>
+				<button type="button" id="toggleButton" class="glyphicon glyphicon-forward pull-left vcenter toggleButton"></button>
 				
-				<div class="one-line vcenter"></div>
+				<div class="one-line vcenter selectable"></div>
 				<button type="button" id="copyButton" class="btn btn-info btn-md pull-right vcenter">Copy!</button>	
 			</div>
 				
@@ -145,18 +212,34 @@ body {
 	</div>
 
 	<div class="row text-center">
+		<hr />
 		<h1>OR</h1>
+		<hr />
+		<h3>DECODE</h3>
 	</div>
 
+	<div class="row text-center">
+		<div class="col-md-2"></div>
+		<div class="row  col-md-8">
+			<button type="button" id="disableButton" disabled="true" class="glyphicon glyphicon-hand-up pull-left vcenter disableButton"></button>
+			
+			<textarea id="decodeArea" rows="3" cols="87" placeholder="Paste your code here..."></textarea>
+
+			</textarea>
+
+			<button type="button" id="viewButton" class="btn btn-info btn-md pull-right vcenter">View!</button>	
+		</div>
+	</div>
 	<div class="view-section row">
 		<div class="image-viewer">
-			<canvas width="300" height="300" id="mycanvas" style="margin: auto; display: block;"></canvas>
+			<canvas width="300" height="300" id="mycanvas" class="canvas" ></canvas>
+			<img id="decodedImage" class="decodedImage" src="">
 		</div>
 	</div>
 </div>
 
 <div class="footer navbar-custom navbar-fixed-bottom text-center">
-	<h4>2017 / creator: akursat / donate via bitcoin </h4>
+	<h4>2017 / creator: akursat / <span title="not ready :(">pay a coffee</a> </h4>
 </div>
 
 </body>
