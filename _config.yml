@@ -12,7 +12,7 @@ description: > # this means to ignore newlines until "baseurl:"
   [akursat@akursat-tr0n ~]$ 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: ademkursatuzun
+twitter_username: akursatuzun
 github_username:  akursat
 
 # Build settings
