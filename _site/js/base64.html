@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>create or view base64</title>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+
+
+$(function() {
+
+//copy function
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+}
+
+$('#copyButton').bind('click', function(event) {
+	copyToClipboard('.one-line');
+});
+
+var temp = undefined;
+
+$('#toggleButton').bind('click', function(event) {
+  
+  if($('#toggleButton').hasClass('css')){
+  	$('.one-line').html(temp);
+  	$('#toggleButton').removeClass('css');	
+  } else {
+  	$('.one-line').html('background-image: url(\''+$('.one-line').html()+'\');');
+  	$('#toggleButton').addClass('css');
+  }
+
+});
+
+$('#imageinput').bind('change', function(event) {
+    var myCanvas = $('#mycanvas')[0];
+    var ctx = myCanvas.getContext('2d');
+    var img = new Image();
+    img.onload = function(){
+	    myCanvas.width = img.width;
+	    myCanvas.height = img.height;
+	    ctx.drawImage(img, 0, 0);
+
+	    var multiline = myCanvas.toDataURL('image/jpeg');
+	    var singleline = multiline.replace(/(\r\n|\n|\r)/gm,"");
+
+	    $('.one-line').html(singleline);
+	    temp = singleline;
+    };
+
+    img.src = URL.createObjectURL(event.target.files[0]);
+
+ });
+
+});
+</script> 
+
+<style>
+.one-line{
+	width: 600px;
+	height: 70px;
+	padding: 1em;
+    overflow: scroll;
+    background-color: #ecf0f1;
+}
+body {
+  padding-top: 50px;
+}
+.create-section {
+  padding: 40px 15px;
+  text-align: center;
+}
+.navbar-custom {
+    background-color:#e74c3c;
+    color:#ffffff;
+    border-radius:0;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+.footer{
+	background-color:#c0392b;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.toggleButton{
+    width: 30px;
+    height: 30px;
+}
+</style>
+</head>
+
+
+
+<body>
+<nav class="navbar navbar-custom navbar-fixed-top">
+	<div class="container">
+		<div class="text-center">
+			<h4>Base64 encoder & decoder</h3>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+
+	<div class="create-section row">
+		<div class="line-one">
+			<div class="upload-button row">
+				
+				<input type="file" id="imageinput" class="btn btn-default btn-md center-block" />
+
+			</div>
+			<hr />
+			<div class="col-md-2"></div>
+			<div class="row  col-md-8">
+				<button type="button" id="toggleButton" class="glyphicon glyphicon-refresh pull-left vcenter toggleButton"></button>
+				
+				<div class="one-line vcenter"></div>
+				<button type="button" id="copyButton" class="btn btn-info btn-md pull-right vcenter">Copy!</button>	
+			</div>
+				
+		</div>
+		<div class="line-two">
+			<div class="multi-line-toggled"></div>
+		</div>
+	</div>
+
+	<div class="row text-center">
+		<h1>OR</h1>
+	</div>
+
+	<div class="view-section row">
+		<div class="image-viewer">
+			<canvas width="300" height="300" id="mycanvas" style="margin: auto; display: block;"></canvas>
+		</div>
+	</div>
+</div>
+
+<div class="footer navbar-custom navbar-fixed-bottom text-center">
+	<h4>2017 / creator: akursat / donate via bitcoin </h4>
+</div>
+
+</body>
+
+</html> 
