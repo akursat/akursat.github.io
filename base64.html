@@ -80,7 +80,7 @@ $('#imageinput').bind('change', function(event) {
 	    myCanvas.height = img.height;
 	    ctx.drawImage(img, 0, 0);
 
-	    var multiline = myCanvas.toDataURL('image/jpeg');
+	    var multiline = myCanvas.toDataURL('image/png');
 	    var singleline = multiline.replace(/(\r\n|\n|\r)/gm,"");
 
 	    $('.one-line').html(singleline);
