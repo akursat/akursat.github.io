@@ -56,4 +56,6 @@ Java 8 kapsayan yazıları bu listeyede ekleyeceğim. Zor bulduğunuz, anlamadı
 	6. [static metotlar ve sabitler](https://akursat.github.io/java/java%20se/2016/01/30/13-6-static-metotlar-ve-sabitler.html)
 	7. [static ve static olmayan bloklar](https://akursat.github.io/java/java%20se/2016/02/05/13-7-static-ve-static-olmayan-bloklar.html)
 
+14. [İç İçe Geçmiş Sınıflar](https://akursat.github.io/http://java/java%20se/2017/11/12/14-ic-ice-gecmis-siniflar.html)
+
 Kaynaklar: https://docs.oracle.com/javase/tutorial/

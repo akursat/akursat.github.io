@@ -35,10 +35,6 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/javase/">Java Se</a>
-          
-        
-          
           <a class="page-link" href="/about/">About</a>
           
         
@@ -95,25 +91,22 @@ Jdk kurulumu , derleyici ve jvm ihtiyacımızı karşılıyor.Ide içinse başl�
 
 <p>webupd8team ppa üzerinden Java 6 ,7 ,8 versiyonlarına erişebilirsiniz.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo add-apt-repository ppa:webupd8team/java
+<div class="highlighter-rouge"><pre class="codehilite"><code>sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java7-installer
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>kurulumun başarıyla sonuçlandığını anlamak için</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>java -version
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>java -version
+</code></pre></div>
 
 <p>komutunu yürütün.buna benzer bir çıktı almalısınız</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>java version "1.7.0_45" 
+<div class="highlighter-rouge"><pre class="codehilite"><code>java version "1.7.0_45" 
 Java(TM) SE Runtime Environment (build 1.7.0_45-b18) 
 Java HotSpot(TM) 64-Bit Server VM (build 24.45-b08, mixed mode)
-</code></pre>
-</div>
+</code></pre></div>
 
 <h2 id="ubuntu-zerinde-ayrntl-kurulum">Ubuntu Üzerinde Ayrıntılı Kurulum</h2>
 
@@ -121,46 +114,40 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.45-b08, mixed mode)
 
 <p>tar.gz dosyasını çıkarın:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>tar -xvf ~/Downloads/jdk-7u45-linux-x64.tar.gz
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>tar -xvf ~/Downloads/jdk-7u45-linux-x64.tar.gz
+</code></pre></div>
 
 <p>java yüklemek için dizin oluşturun:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo mkdir -p /usr/lib/jvm/jdk1.7.0
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>sudo mkdir -p /usr/lib/jvm/jdk1.7.0
+</code></pre></div>
 
 <p>çıkarılan dosyaları (home dizini altında) oluşturduğunuz dizine taşıyın:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo mv jdk1.7.0_45/* /usr/lib/jvm/jdk1.7.0/
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>sudo mv jdk1.7.0_45/* /usr/lib/jvm/jdk1.7.0/
+</code></pre></div>
 
 <p>sisteminizin javayı yüklediğinizi bilmesi için:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0/bin/java" 1 
+<div class="highlighter-rouge"><pre class="codehilite"><code>sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0/bin/java" 1 
 sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0/bin/javac" 1 
 sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0/bin/javaws" 1
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>komutlarını yürütün.Kurulum tamamlandıktan sonra ortamı ayarlamalıyız.
 /etc/profile yolundaki dosyayı düzenlemek için:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo gedit /etc/profile
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>sudo gedit /etc/profile
+</code></pre></div>
 
 <p>komutunu çalıştırın.Açılan dosyanın sonuna</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>JAVA_HOME=/usr/lib/jvm/jdk1.7.0 
+<div class="highlighter-rouge"><pre class="codehilite"><code>JAVA_HOME=/usr/lib/jvm/jdk1.7.0 
 PATH=$PATH:$HOME/bin:$JAVA_HOME/bin 
 export JAVA_HOME 
 export JRE_HOME 
 export PATH
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>satırlarını ekleyin ve kaydedin. Ortam kurulumu hazır artık Java kodlamaya başlayabiliriz.</p>
 
@@ -197,8 +184,8 @@ export PATH
 
           
           <li>
-            <a href="https://twitter.com/ademkursatuzun"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
-</span><span class="username">ademkursatuzun</span></a>
+            <a href="https://twitter.com/akursatuzun"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">akursatuzun</span></a>
 
           </li>
           

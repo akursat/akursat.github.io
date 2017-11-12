@@ -35,10 +35,6 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/javase/">Java Se</a>
-          
-        
-          
           <a class="page-link" href="/about/">About</a>
           
         
@@ -93,9 +89,8 @@
 
 <h3 id="deikenin-tanmlanmas"><strong>Değişkenin Tanımlanması</strong></h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Point baslangicNoktasi1;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>Point baslangicNoktasi1;
+</code></pre></div>
 
 <p>şeklinde tanımlanan bir değişken bir nesneye atanmadığı sürece belirsiz olacaktır. Yani değişken tanımlamak nesneyi oluşturmaz. new operatörü ile baslangicNoktasini bir nesneye atamalısınız. Aksi taktirde derleyici hatasıyla karşılaşırsınız.</p>
 
@@ -109,13 +104,12 @@
 
 <p>new operatörü oluşturulan nesne için bir referans döndürür. Bu referans uygun tipte bir değişkene atanır. Örneğin;</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Point baslangicNoktasi1 = new Point(23, 94);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>Point baslangicNoktasi1 = new Point(23, 94);
+</code></pre></div>
 
 <p><strong>Point Sınıfı</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>public int x;
+<div class="highlighter-rouge"><pre class="codehilite"><code>public int x;
 public int y;
 
 public Point(int x, int y)
@@ -123,22 +117,20 @@ public Point(int x, int y)
     this.x = x;
     this.y = y;
   }
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>Sınıfın tamamını <a href="http://developer.classpath.org/doc/java/awt/Point-source.html">buradan</a> inceleyebilirsiniz.</p>
 
 <p>Burada Point sınıfı benim oluşturduğum bir sınıf değil. Bu sınıf java.awt içerisinde bulunuyor. Bir point (nokta) (x,y) koordinat düzleminde integer olarak bir konumu temsil ediyor. Bir üsteki örneğimizde bu konuma (23,94) argümanları göndermiştik.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Point baslangicNoktasi1 = new Point(23, 94);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>Point baslangicNoktasi1 = new Point(23, 94);
+</code></pre></div>
 
 <p>Bu satır yürütüldükten sonra sonucu şu şekilde gösterebiliriz;</p>
 
 <p><a href="http://akursat.com/wp-content/uploads/2015/05/bas2.png"><img src="http://akursat.com/wp-content/uploads/2015/05/bas2.png" alt="bas2" /></a>Dört constructor içeren Dikdortgen sınıfının kodu şöyle;</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>package com.nesneler;
+<div class="highlighter-rouge"><pre class="codehilite"><code>package com.nesneler;
 
 import java.awt.Point;
 /**
@@ -183,14 +175,12 @@ public class Dikdortgen {
         return genislik * yukseklik;
     }
 }
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>Eğer bir sınıfta birden fazla constructor varsa onlar farklı signature’lara sahip olmalıdır. Buna daha önce <a href="http://akursat.com/?p=85">burada</a> değinmiştik.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Dikdortgen dikdortgen1 = new Dikdortgen(baslangicNoktasi1, 100, 200);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>Dikdortgen dikdortgen1 = new Dikdortgen(baslangicNoktasi1, 100, 200);
+</code></pre></div>
 
 <p>Bu satır Diktortgen sınıfının dördüncü constructor’ını çağırır, baslangicNoktasi1 için baslangicNoktasini ilklendirir. Ayrıca constructor, genisliği 100 ve yüksekliğide 200 olarak ayarlar. Şimdi aynı Point nesnesi için iki referansa sahibiz - bir nesne birden fazla referans alabilir.  <a href="http://akursat.com/wp-content/uploads/2015/05/bas3.png"><img src="http://akursat.com/wp-content/uploads/2015/05/bas3.png" alt="bas3" /></a></p>
 
@@ -227,8 +217,8 @@ public class Dikdortgen {
 
           
           <li>
-            <a href="https://twitter.com/ademkursatuzun"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
-</span><span class="username">ademkursatuzun</span></a>
+            <a href="https://twitter.com/akursatuzun"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">akursatuzun</span></a>
 
           </li>
           

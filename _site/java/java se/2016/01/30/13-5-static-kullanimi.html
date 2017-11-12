@@ -35,10 +35,6 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/javase/">Java Se</a>
-          
-        
-          
           <a class="page-link" href="/about/">About</a>
           
         
@@ -79,7 +75,7 @@ Bazen bir değişkenin tüm nesneler için ortak olmasını isteyebilirsiniz. İ
 <p>Bellekte sabit yeri olan static değişkenini, bir sınıfın her bir nesnesi paylaşır. Herhangi bir nesne bu değişkenin değerini değiştirebilir. Ayrıca static değişkenlerin değerleri nesne oluşturmadan da değiştirilebilir.
 Örneğin birden fazla Bisiklet nesnesi oluşturmak ve her birine bir seri numarası atamak istediğimizi düşünelim. Bu id numarası her bir nesne için eşsiz olsun. Aynı zamanda kaç tane Bisiklet nesnesi oluşturulduğunu tutalım ki bunu kullanarak bir sonraki id belirleyelim.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>public class Bisiklet {
+<div class="highlighter-rouge"><pre class="codehilite"><code>public class Bisiklet {
         
     private int kadans;
     private int vites;
@@ -92,27 +88,24 @@ Bazen bir değişkenin tüm nesneler için ortak olmasını isteyebilirsiniz. İ
     private static int bisikletSayisi = 0;
         ...
 }
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>static değişkenler sınıfın kendi ismiyle çağrılabilirler</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Bisiklet.bisikletSayisi
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>Bisiklet.bisikletSayisi
+</code></pre></div>
 
 <p>static değişkenleri aşağıdaki şekilde de çağırabilirsiniz</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Bisiklet bisiklet1 = new Bisiklet()
+<div class="highlighter-rouge"><pre class="codehilite"><code>Bisiklet bisiklet1 = new Bisiklet()
 bisiklet1.bisikletSayisi
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>Bu yöntem tavsiye edilmez çünkü static değişkenler ile static olmayan değişkenler arasında görülebilir fark bırakmak programcıların işini kolaylaştırır.</p>
 
 <p>Daha önce kullandığımız Bisiklet sınıfını güncelleyelim. Bisikletin constructor’ını id artırmak için kullanalım.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>public class Bisiklet {
+<div class="highlighter-rouge"><pre class="codehilite"><code>public class Bisiklet {
         
     private int kadans;
     private int vites;
@@ -135,8 +128,7 @@ bisiklet1.bisikletSayisi
     }
         ...
 }
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>Bir sonraki ders static metotlarla bu konuyu devam edeceğiz.</p>
 
@@ -173,8 +165,8 @@ bisiklet1.bisikletSayisi
 
           
           <li>
-            <a href="https://twitter.com/ademkursatuzun"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
-</span><span class="username">ademkursatuzun</span></a>
+            <a href="https://twitter.com/akursatuzun"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">akursatuzun</span></a>
 
           </li>
           

@@ -35,10 +35,6 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/javase/">Java Se</a>
-          
-        
-          
           <a class="page-link" href="/about/">About</a>
           
         
@@ -81,7 +77,7 @@
 
 <p>Break koşul sağlandığından bulunduğu döngünün dışına çıkacaktır.break bir döngüde(for,while,do while) yada switchde kullanılmalıdır.Örnek 1.1 de görüldüğü üzere;</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>for (int i = 0; i &lt; 25; i++) {
+<div class="highlighter-rouge"><pre class="codehilite"><code>for (int i = 0; i &lt; 25; i++) {
 			System.out.println(i);
 			if (i == 3) {
 				break;
@@ -89,34 +85,30 @@
 		}
 		// koşul sağlandığından break bu satıra atlayacak.
 	}
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>Çıktı:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>0,1,2,3,
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>0,1,2,3,
+</code></pre></div>
 
 <h2 id="continue-kullanm"><strong>Continue Kullanımı</strong></h2>
 
 <p>continue “döngüdeki bir sonraki iterasyona git” diye yorumlanabilir. Örnek 2.1 bu durumu çıktıdan kolayca anlayabiliriz.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>for (int i = 0; i &lt; 5; i++) {
+<div class="highlighter-rouge"><pre class="codehilite"><code>for (int i = 0; i &lt; 5; i++) {
 
 			if (i == 3) {
 				continue;// bir sonraki iterasyona gidecek.
 			}
 			System.out.print(i + ",");
 		}
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>Çıktı:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>0,1,2,4,
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>0,1,2,4,
+</code></pre></div>
 
 <p>Çıktıda görüldüğü gibi i, üçe eşit olduğunda bir sonraki iterasyona atladı ve dördü ekrana yazdı.
 Breakde olduğu gibi labeli continue ilede benzer şekilde kullanabiliriz.</p>
@@ -126,7 +118,7 @@ Breakde olduğu gibi labeli continue ilede benzer şekilde kullanabiliriz.</p>
 
 <p>break ve continue ifadeleri ile kullanılır demiştik.Peki break bir iç içe döngüde bulunuyorsa ve bizim bu iç içe döngüden çıkmamız gerekiyorsa.İşte bu durumda <strong>Label(etiket)</strong> kullanılır Örnek 1.2 de görüldüğü üzere;</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>dongunun_disi: for (int i = 0; i &lt; 25; i++) {
+<div class="highlighter-rouge"><pre class="codehilite"><code>dongunun_disi: for (int i = 0; i &lt; 25; i++) {
 
 			for (int j = 0; j &lt; 3; j++) {
 
@@ -137,8 +129,7 @@ Breakde olduğu gibi labeli continue ilede benzer şekilde kullanabiliriz.</p>
 			}
 
 		}// koşul sağlandığından break bu satıra atlayacak.
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>Labeli döngünün başladığı yere koyun.Labeli break ile tanımlayın.İç içe döngülerden bu şekilde çıkabilirsiniz.</p>
 
@@ -147,28 +138,25 @@ Breakde olduğu gibi labeli continue ilede benzer şekilde kullanabiliriz.</p>
 <p><strong>return</strong> bulunduğu metotdan çıkarır ve kontrol akışını metodun çağrıldığı yere geri döndürür demiştik.return iki farklı türe sahiptir.Biri değer alır ve diğeri almaz.
 Örneğin değer alan bir return ifadesi;</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>int sayi1;
+<div class="highlighter-rouge"><pre class="codehilite"><code>int sayi1;
 int ornekmetot2() {
       return sayi1;
 }
-</code></pre>
-</div>
+</code></pre></div>
 
 <p>Aynı zamanda değer dönderecek şekilde bir expressionda yazılabilir.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>return sayi1*sayi2;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="codehilite"><code>return sayi1*sayi2;
+</code></pre></div>
 
 <p>Geri dönen değerin(örneğin üsteki satır) veri tipi metodun veri tipi ile uyuşmalıdır.
 void bir metot tanımlandığında return nun değer almayan türü kullanılır.Bu bir değer döndürmez.Örneğin</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>void ornekmetot() {
+<div class="highlighter-rouge"><pre class="codehilite"><code>void ornekmetot() {
 
 		return;
 	}
-</code></pre>
-</div>
+</code></pre></div>
 
 <p><em>Not:Bu metotlarla ilgili tüm bilgiyi Sınıflar yazısında paylaşacağım.</em></p>
 
@@ -205,8 +193,8 @@ void bir metot tanımlandığında return nun değer almayan türü kullanılır
 
           
           <li>
-            <a href="https://twitter.com/ademkursatuzun"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
-</span><span class="username">ademkursatuzun</span></a>
+            <a href="https://twitter.com/akursatuzun"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">akursatuzun</span></a>
 
           </li>
           

@@ -6,9 +6,116 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 18 Jun 2016 19:55:46 +0300</pubDate>
-    <lastBuildDate>Sat, 18 Jun 2016 19:55:46 +0300</lastBuildDate>
-    <generator>Jekyll v3.0.1</generator>
+    <pubDate>Sun, 12 Nov 2017 13:12:51 +0300</pubDate>
+    <lastBuildDate>Sun, 12 Nov 2017 13:12:51 +0300</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>14 - İç içe geçmiş sınıflar</title>
+        <description>&lt;h2 id=&quot;blok-kullanmadan-initialize&quot;&gt;Blok kullanmadan initialize&lt;/h2&gt;
+
+&lt;p&gt;İç içe sınıflar (nested classes) static ve static olmayan olmak üzere ikiye ayrılır.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public class DisSinif {
+
+    class IcSinif {
+        
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Bir iç sınıf onu kapsayan sınıfın üyesidir. Static olmayan İç sınıflar, private tanımlansalar bile onu kapsayan sınıfın üyelerine erişebilir. Static iç sınıflar ise onu kapsayan sınıfın üyelerine erişemezler. Bir iç sınıf, dış sınıfın bir üyesi olarak private, protected, public veya package private olarak tanımlanabilir. (Dış sınıfların sadece public veya package private tanımlanabileceğini hatırlayalım.)
+İç içe sınıfları kullanmamızı gerektiren durumlar şunlardır;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Bazen bir sınıfı başka bir sınıfa taşımak anlamsızdır. Özellikle bu sınıfa başka bir yerden erişilmeyecekse.&lt;/li&gt;
+  &lt;li&gt;Okunabilirliği ve kod yönetimini kolaylaştırır.&lt;/li&gt;
+  &lt;li&gt;Bir dizinde iki sınıf olduğunu düşünelim A ve B. B’nin A’nın üyelerine erişmesi gerekiyor bu olmasaydı A’daki üyeler private olarak tanımlanacaktı. B sınıfını A’nın içerisinde gizleyerek A’nın üyeleri private olarak tanımlanabilir ve B bu üyelere erişebilir. Hem de B kendisini dış dünyandan gizlemiş olur. Dolayısıyla Kapsüllemeyi (encapsulation) güçlendirir.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;static--snflar&quot;&gt;Static İç Sınıflar&lt;/h2&gt;
+
+&lt;p&gt;Aynı static metotlar gibi bir static iç sınıf, onu kapsayan sınıftaki değişken veya metoda doğrudan erişemez. Onlara sadece bir nesne referansıyla erişir.
+Static iç sınıflara onu kapsayan sınıfın ismini kullanarak erişilir:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;DisSinif.StaticİcSinif
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Örneğin bir static iç sınıftan nesne oluşturmak için şu söz dizimini kullanırız:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;DisSinif.StaticİcSinif icNesne  = new DisSinif.StaticİcSinif();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;İç Sınıflar aynı metotlar ve değişkenler gibi bir iç sınıfta onu kapsayan sınıfın instance’i ile ilişkilendirilir ve nesnenin metot ve alanlarına doğrudan erişebilir. Ayrıca bir iç sınıf instance ile ilişkilendirildiğinden static üye tanımlayamaz.
+İç Sınıfın intance’i sadece Dış Sınıfın instance’i ile var olur. İç Sınıftan bir nesne oluşturmak için önce Dış sınıftan bir nesne oluşturmalıyız.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;DisSinif disNesne = new DisSinif();
+DisSinif.IcSinif icNesne = disNesne.new IcSinif();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;glgeleme-shadowing&quot;&gt;Gölgeleme (Shadowing)&lt;/h2&gt;
+&lt;p&gt;Eğer bir tip belirli bir scope içerisinde tanımlanırken onu kapsayan scope içerisinde aynı isme sahip bir tanım varsa, kapsayan scope’taki tanım gölgelenir. Örneğin bir iç sınıf ile dış sınıf aynı isme sahip iki değişken barındırıyorsa. Aşağıdaki örnek bu olayı açıklamaya yardımcı olacaktır.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public class GolgeTesti {
+
+public int x = 0;
+
+class IcSinif {
+
+    public int x = 1;
+
+    void method(int x) {
+        System.out.println(&quot;x = &quot; + x);
+        System.out.println(&quot;this.x = &quot; + this.x);
+        System.out.println(&quot;GolgeTesti.this.x = &quot; + GolgeTesti.this.x);
+    }
+}
+
+public static void main(String... args) {
+	GolgeTesti gt = new GolgeTesti();
+	GolgeTesti.IcSinif icSinif = gt.new IcSinif();
+	icSinif.method(23);
+} }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Örneğin çıktısı şu şekilde:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;x = 23
+this.x = 1
+GolgeTesti.this.x = 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Bu örnekte üç tane x tanımlanmıştır. Parametredeki x, İç Sınıfta bulunan x değişkeni ve Dış Sınıfta bulunan x değişkeni.
+Parametre olan x, iç sınıfta bulunan x değişkenini gölgeledi. Sınıfa üye olan değişkeni referans göstermek için this kelimesini kullandık. İç Sınıftaki x değişkeni ise dış sınıftaki x değişkenini gölgeledi. Daha üst bir scope’da bulunan x değişkenine erişmek için ise sınıf isminin ardından this kelimesini kullandık.&lt;/p&gt;
+&lt;h2 id=&quot;serialization&quot;&gt;Serialization&lt;/h2&gt;
+&lt;p&gt;İç sınıfların serileştirilmesi kesinlikle tavsiye edilmez. Java derleyicisi iç sınıflar gibi bazı yapıları derlerken sentetik yapılar (synthetic constructs) oluşturur. Sentetik yapılar farklı Java derleyicilerinde çeşitlilik gösterebilir buda .class dosyalarının değişlik göstereceği anlamına gelir. Bundan dolayı eğer bir iç sınıfı serileştirip edip farklı JRE sürümünde deserialize ederseniz uyumluluk sorunlarıyla karşılaşırsınız.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 12 Nov 2017 12:34:01 +0300</pubDate>
+        <link>http://yourdomain.com/java/java%20se/2017/11/12/14-ic-ice-gecmis-siniflar.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2017/11/12/14-ic-ice-gecmis-siniflar.html</guid>
+        
+        <category>nested classes</category>
+        
+        <category>iç içe geçmiş sınıflar</category>
+        
+        <category>shadowing</category>
+        
+        <category>serialization</category>
+        
+        <category>java</category>
+        
+        <category>java dersleri</category>
+        
+        <category>scope</category>
+        
+        <category>static</category>
+        
+        
+        <category>Java</category>
+        
+        <category>Java Se</category>
+        
+      </item>
     
       <item>
         <title>13.7 - static ve static olmayan bloklar</title>
@@ -16,12 +123,11 @@
 
 &lt;p&gt;Bildiğiniz gibi değişkenleri aşağıdaki örnekteki gibi initialize edebiliriz.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Test{
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public class Test{
     public int nesneSayisi = 0;
     private boolean  cevap  = true; 
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Atanacak değer erişilebilir olduğunda bu yöntem kullanılabilir. Eğer atama işlemi bazı mantık işlemleri içeriyorsa (bir dizinin doldurulması ya da hata yönetimi gibi) constructor içerisinde initialize etmemiz mantıklı olacaktır.&lt;/p&gt;
 
@@ -31,13 +137,12 @@
 
 &lt;p&gt;static bloklar normal blokların önüne static konulmasıyla oluşan bloklardır.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;static {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;static {
 
 // kodlar buraya gelecek
 
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Bir sınıfta birden fazla static blok bulunabilir. Static bloklar kaynak koddaki yer alan sıralarıyla yürütülürler. static bloklar constructor gibi sınıf oluşturulduğunda yürütülürler. Constructor’lardan önce yürütülür. Bu bloklar static değişkenleri initialize etmek için kullanılabilirler.&lt;/p&gt;
 
@@ -49,19 +154,18 @@
 
 &lt;p&gt;Birincisi static olmayan bloklar.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
 &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//kodlar&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;buraya&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;gelecek&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Java static olmayan blokları her bir constructor’a kopyalar. Static olmayan bu blokları kullanılarak çok sayıdaki constructor için aynı initialize işlemini yapmamıza gerek kalmaz.&lt;/p&gt;
 
 &lt;p&gt;Şimdi bu öğrendiklerimizi örnek üzerinde uygulayalım.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Test{
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public class Test{
     static
     {
         System.out.println(&quot;Static Blok&quot;);
@@ -79,18 +183,16 @@
         Test t2 = new Test();
     }
   }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Örneğimizin çıktısı şu şekilde:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Static Blok
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;Static Blok
 Static Olmayan Blok
 Test...
 Static Olmayan Blok
 Test...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 05 Feb 2016 21:48:16 +0200</pubDate>
         <link>http://yourdomain.com/java/java%20se/2016/02/05/13-7-static-ve-static-olmayan-bloklar.html</link>
@@ -141,25 +243,22 @@ Test...
 
 &lt;p&gt;Java programlama dili static değişkenlerin yanında static metotları da destekler. Static metotlar çoğunlukla static değişkenleri çağırmak için kullanılır. Yukarıdaki Bisiklet sınıfı için şu metodu yazabiliriz.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static int bisikletSayisiniGetir( {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public static int bisikletSayisiniGetir( {
 return bisikletSayisi;      
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;!-- more --&gt;
 
 &lt;p&gt;Static metotlar sınıf adıyla doğrudan çağrılabilir.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Bisiklet.bisikletSayisiniGetir()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;Bisiklet.bisikletSayisiniGetir()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;static metotlar yine static değişkenler gibi nesneyle de çağırabilirsiniz ama bu yöntem tavsiye edilmez.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bisiklet1.bisikletSayisiniGetir()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;bisiklet1.bisikletSayisiniGetir()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -184,9 +283,8 @@ return bisikletSayisi;
 &lt;p&gt;Static ile final kelimelerinin birleşimi sabit tanımlamak için kullanılır. final, değişkenin değerinin değişmeyeceğini belirtir.
 Aşağıdaki örnekte PI adli bir sabit oluşturduk.Bu değişkenin değeri yaklaşık pi değerini almıştır.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;static final double PI = 3.14159265358;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;static final double PI = 3.14159265358;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Bu şekilde tanımlanan sabitler tekrar atanamaz. Eğer bunu yapmayı denerseniz derleyici hatası alırsınız. Derleyici sabitin isminin geçtiği her yeri girdiğiniz sabit değerinizle değiştirir.&lt;/p&gt;
 </description>
@@ -226,7 +324,7 @@ Bazen bir değişkenin tüm nesneler için ortak olmasını isteyebilirsiniz. İ
 &lt;p&gt;Bellekte sabit yeri olan static değişkenini, bir sınıfın her bir nesnesi paylaşır. Herhangi bir nesne bu değişkenin değerini değiştirebilir. Ayrıca static değişkenlerin değerleri nesne oluşturmadan da değiştirilebilir.
 Örneğin birden fazla Bisiklet nesnesi oluşturmak ve her birine bir seri numarası atamak istediğimizi düşünelim. Bu id numarası her bir nesne için eşsiz olsun. Aynı zamanda kaç tane Bisiklet nesnesi oluşturulduğunu tutalım ki bunu kullanarak bir sonraki id belirleyelim.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Bisiklet {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public class Bisiklet {
         
     private int kadans;
     private int vites;
@@ -239,27 +337,24 @@ Bazen bir değişkenin tüm nesneler için ortak olmasını isteyebilirsiniz. İ
     private static int bisikletSayisi = 0;
         ...
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;static değişkenler sınıfın kendi ismiyle çağrılabilirler&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Bisiklet.bisikletSayisi
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;Bisiklet.bisikletSayisi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;static değişkenleri aşağıdaki şekilde de çağırabilirsiniz&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Bisiklet bisiklet1 = new Bisiklet()
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;Bisiklet bisiklet1 = new Bisiklet()
 bisiklet1.bisikletSayisi
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Bu yöntem tavsiye edilmez çünkü static değişkenler ile static olmayan değişkenler arasında görülebilir fark bırakmak programcıların işini kolaylaştırır.&lt;/p&gt;
 
 &lt;p&gt;Daha önce kullandığımız Bisiklet sınıfını güncelleyelim. Bisikletin constructor’ını id artırmak için kullanalım.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Bisiklet {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public class Bisiklet {
         
     private int kadans;
     private int vites;
@@ -282,8 +377,7 @@ bisiklet1.bisikletSayisi
     }
         ...
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Bir sonraki ders static metotlarla bu konuyu devam edeceğiz.&lt;/p&gt;
 </description>
@@ -488,7 +582,7 @@ Burada mevcut nesne kavramı tam olarak anlaşılmalı. Burada mevcut nesneden k
 &lt;p&gt;Field ile bir metot ya da constructor’ın parametresi çakışdığı durumlarda this kullanılır. Bu yöntem çok sık kullanılır.
 Örneğin Point sınıfı aşağıdaki şekilde yazılabilir&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Point {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public class Point {
     public int x = 0;
     public int y = 0;
         
@@ -498,14 +592,13 @@ Burada mevcut nesne kavramı tam olarak anlaşılmalı. Burada mevcut nesneden k
         y = b;
     }
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;!-- more --&gt;
 
 &lt;p&gt;ama aynı zamanda aşağıdaki şekilde de yazabiliriz&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Point {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public class Point {
     public int x = 0;
     public int y = 0;
         
@@ -515,8 +608,7 @@ Burada mevcut nesne kavramı tam olarak anlaşılmalı. Burada mevcut nesneden k
         this.y = y;
     }
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Constructur içerisindeki x, field içerisindeki x ile çakıştığından bu sorunu this kullanarak çözdük. Field içerisindeki x’e erişmek için this.x kullandık.&lt;/p&gt;
 
@@ -525,7 +617,7 @@ Burada mevcut nesne kavramı tam olarak anlaşılmalı. Burada mevcut nesneden k
 &lt;p&gt;Bir constructor içerisinde aynı sınıfın diğer constructor’ını çağırabilirsiniz.
 Örneğin;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Dikdortgen {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public class Dikdortgen {
     private int x, y;
     private int genislik, yukseklik;
         
@@ -543,8 +635,7 @@ Burada mevcut nesne kavramı tam olarak anlaşılmalı. Burada mevcut nesneden k
     }
     ...
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Bu sınıf birden fazla constructor içeriyor. Her bir constructor Dikdortgen sınıfının değişkenlerini initialize ediyor. Örnekte görüldüğü gibi hiçbir argüman almayan constructor 1x1 boyutlarında ve 0,0 kordinatlarında bir Dikdörtgen oluşturur. İki argüman alan constructor ise dört argüman alan constructor’ı çağırıyor. Bu çağırımı yaparken kordinat değerlerini 0,0 olarak gönderiyor. Daha öncede belirtiğimiz gibi derleyici argüman sayısı ve tipine bakarak hangi constructor’ı çağıracağına karar veriyor.
 Eğer bu yapıyı kullanırsanız diğer constructor çağırımı constructor içerisinde ilk satırda olmalı.&lt;/p&gt;
@@ -584,21 +675,19 @@ Eğer bu yapıyı kullanırsanız diğer constructor çağırımı constructor i
 
 &lt;p&gt;Şimdi Sayı tipinde bir dönüşe sahip bir metoda sahip olduğumuzu düşünelim.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public Sayi birSayiDondur() {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public Sayi birSayiDondur() {
     ...
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;birSayiDönder metodu bir sanal sayi döndürebilir ama bir “Object” döndüremez. SanalSayı bir sayidir çünkü Sayının alt sınıfıdır. Buna rağmen Object bir Sayı olmak zorunda değildir - String veya başka bir tip olabilir.&lt;/p&gt;
 
 &lt;p&gt;Bir metodu, orijinal metodun bir alt sınıfını döndürecek şekilde tanımlayabiliriz.(override)&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public SanalSayi birSayiDondur() {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public SanalSayi birSayiDondur() {
         ...
     }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Yukarıdaki gibi override edilmiş bir metot için; Bir alt sınıftaki metodun dönüş tipi bir üst sınıftaki metodun dönüş tipinden farklı olabilir. Bu teknik “covariant dönüş tipi” olarak adlandırır.&lt;/p&gt;
 
@@ -657,34 +746,31 @@ Eğer bu yapıyı kullanırsanız diğer constructor çağırımı constructor i
 &lt;!-- more --&gt;
 void olarak tanımlamış bir metot bir değer döndürmez. return satırını bulundurma zorunluluğu yoktur ama istenirse bu yapılabilir. Örneğin, bir kontrol yapısında (if-else) metottan çıkış yaparak geri kalan kodun yürütülmesini durdurmak için kullanılır. Basitçe&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;return;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;return;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;şeklinde kullanılır.&lt;/p&gt;
 
 &lt;p&gt;Eğer void tanımladığınız bir metotta değer döndürmeye çalışırsanız derleyici hatası alırsınız.
 void tanımlanmayan her metot, bir değer döndüren dönüş tipi barındırmalıdır.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    return donenDeger;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;    return donenDeger;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Dönen veri tipi metotta tanımlanan dönüş tipiyle uyumlu olmalıdır. Örneğin geri dönüş tipi boolean tanımlanmış bir metotta integer döndüremezsiniz.&lt;/p&gt;
 
 &lt;p&gt;Daha önceki konularda gördüğümüz bir metot olan getArea() metodu bir integer döndürüyordu.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  // dikdörtgenin alanının hesaplayan metot
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;  // dikdörtgenin alanının hesaplayan metot
    public int getArea() {
        return genislik * yukseklik;
    }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Bu metot genislik * yukseklik hesaplayarak bir integer döndürür.
 getArea metodu bir primitif tip döndürür. Bir metot ayrıca bir referans tipide döndürebilir. Daha önce yazdığımız Bisiklet sınıfı kullanan referan tipi döndüren bir metot yazalım;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public Bisiklet kiminBisikletiDahaHızlı(Bisiklet bisikletim, Bisiklet bisikletin,
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;public Bisiklet kiminBisikletiDahaHızlı(Bisiklet bisikletim, Bisiklet bisikletin,
                              Cevre cevre) {
    Bisiklet enHizlisi;
    // girilen bisikletlerden çevre şartlarına
@@ -692,8 +778,7 @@ getArea metodu bir primitif tip döndürür. Bir metot ayrıca bir referans tipi
    // en hızlı olanı hesaplayan satırlar
    return enHizlisi;
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Mon, 26 Oct 2015 20:37:18 +0300</pubDate>
         <link>http://yourdomain.com/java/java%20se/2015/10/26/13-1-metottan-bir-degerin-dondurulmesi.html</link>
@@ -753,18 +838,16 @@ Bir nesne referans barındırmadığında garbage collection için uygun hale ge
 Örneğin Dikdortgen sınıfında “genislik” ve “yukseklik” olmak üzere iki değişken tanımlamıştık. Bunları o sınıf içerisinde şu şekilde ekrana yazdırabilirdik.
 &lt;!-- more --&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;System.out.println(“Genişlik ve Yükseklik: &quot; + genislik + &quot;, &quot; + yukseklik);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;System.out.println(“Genişlik ve Yükseklik: &quot; + genislik + &quot;, &quot; + yukseklik);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Bu sınıfın dışındaki bir kodda bir nesne referansı kullanarak bu field’lere erişebiliriz. Bu nesne referansını nokta (.) operatörü takip etmelidir.&lt;/p&gt;
 
 &lt;p&gt;nesneninRefaransı.fieldAdı
 Örneğin daha önce kullandığımız &lt;a href=&quot;http://akursat.com/?p=99&quot;&gt;NesneOrnek&lt;/a&gt; adli sınıfta Dıkdortgen adli sınıfın field’lerine erişmiştik.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;System.out.println(&quot;dikdortgenBir genişliği: &quot; + dikdortgen1.genislik);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;System.out.println(&quot;dikdortgenBir genişliği: &quot; + dikdortgen1.genislik);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;nesnenin-metotlarna-erime&quot;&gt;&lt;strong&gt;Nesnenin metotlarına erişme&lt;/strong&gt;&lt;/h3&gt;
 
@@ -776,10 +859,9 @@ nesneninReferansı.MetotAdı();&lt;/p&gt;
 
 &lt;p&gt;Örneğin daha önce kullandığımız &lt;a href=&quot;http://akursat.com/?p=99&quot;&gt;NesneOrnek&lt;/a&gt; adli sınıfta Dıkdortgen adli sınıfın metotlarına erişmiştik.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;System.out.println(&quot;dikdortgenBir alanı: &quot; + dikdortgen1.getArea());
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;System.out.println(&quot;dikdortgenBir alanı: &quot; + dikdortgen1.getArea());
 dikdortgen2.move(40, 72);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;İlk metot argünman gerektirmediği için boş parentez kullanıldı. İkinci metot dikdörtgenin x ve y değerlerini değiştiren yani dikdörtgeni hareket ettiren bir metot. Metot iki argüman alıyor bunun için (40, 72) şeklinde yazıldı.&lt;/p&gt;
 
@@ -787,17 +869,15 @@ dikdortgen2.move(40, 72);
 
 &lt;p&gt;Bir nesnenin field veya metodunu çağırmadan önce onu önceden referansını oluşturmuştuk.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Dikdortgen dikdortgen1 = new Dikdortgen(100, 200);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt; Dikdortgen dikdortgen1 = new Dikdortgen(100, 200);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Yukarıda bu dıkdortgen1  referansını kullanarak getArea() metoduna erişmiştik.&lt;/p&gt;
 
 &lt;p&gt;Bu referansı değişkende tutmadanda erişebiliriz.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int dikdortgeninAlani = new Dikdortgen(100,200).getArea();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;codehilite&quot;&gt;&lt;code&gt;int dikdortgeninAlani = new Dikdortgen(100,200).getArea();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Burada new Dikdortgen(100,200) Dikdortgen nesnesinin referansını dönderir. Nokta (.) operatörü kullanarak da getArea() metodunu çağırdık. Dönen hesaplamayı da  dikdortgeninAlani değişkenine atadık. Bunu field’ler içinde yapabilirsiniz.&lt;/p&gt;
 
@@ -812,153 +892,6 @@ dikdortgen2.move(40, 72);
         <category>metot</category>
         
         <category>new operatörü</category>
-        
-        
-        <category>Java</category>
-        
-        <category>Java Se</category>
-        
-      </item>
-    
-      <item>
-        <title>12.1 - Nesnelerin Oluşturulması</title>
-        <description>&lt;p&gt;&lt;strong&gt;Point baslangicNoktasi1&lt;/strong&gt; = new Point(23, 94);
-&lt;strong&gt;Dikdortgen dikdortgen1&lt;/strong&gt; = new Dikdortgen(baslangicNoktasi1, 100, 200);
-&lt;strong&gt;Dikdortgen dikdortgen2&lt;/strong&gt; = new Dikdortgen(50, 100);&lt;/p&gt;
-
-&lt;p&gt;Birinci Satır Point sınıfından bir nesne oluştururken. İkinci ve üçüncü satır Dikdortgen sınıfından bir nesne oluşturuyor. Bu üç satırında ortak özellikleri var. Bunlar;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Declaration&lt;/strong&gt;: Kalın yazı ile belirtilen tüm değişken tanımlamaları(declaration) bir nesne tipini ve ismini içeriyor.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Instantiation&lt;/strong&gt;: new bu nesneyi oluşturan Java operatörüdür.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Initialization&lt;/strong&gt;: new operatörünü bir constructor takip eder.(yukarıdaki birinci satırda Point(-,-) ifadesini görebilirsiniz) Bu yeni nesneyi ilklendirecektir. (initialization)&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;!-- more --&gt;
-&lt;p&gt;Bu üç kavram havada kalmamalıdır bundan dolayı anladığınıza emin olup ilerlemenizi tavsiye ederim. Bu temel üç ifade kısaca Tanımlar, Oluşturur ve İlklendirir.&lt;/p&gt;
-
-&lt;h3 id=&quot;deikenin-tanmlanmas&quot;&gt;&lt;strong&gt;Değişkenin Tanımlanması&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Point baslangicNoktasi1;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;şeklinde tanımlanan bir değişken bir nesneye atanmadığı sürece belirsiz olacaktır. Yani değişken tanımlamak nesneyi oluşturmaz. new operatörü ile baslangicNoktasini bir nesneye atamalısınız. Aksi taktirde derleyici hatasıyla karşılaşırsınız.&lt;/p&gt;
-
-&lt;p&gt;Bu durumdaki değişkeni şu şekille ifade edelim;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://akursat.com/wp-content/uploads/2015/05/bas1.png&quot;&gt;&lt;img src=&quot;http://akursat.com/wp-content/uploads/2015/05/bas1.png&quot; alt=&quot;bas1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;nesnenin-oluturulmas&quot;&gt;&lt;strong&gt;Nesnenin Oluşturulması&lt;/strong&gt;&lt;/h3&gt;
-
-&lt;p&gt;new operatörü, yeni bir nesne ve o nesnenin bellekteki referansı için bellekte yer ayırarak bir nesne oluşturur. Ayrıca nesnenin constructor’ını çağırır.&lt;/p&gt;
-
-&lt;p&gt;new operatörü oluşturulan nesne için bir referans döndürür. Bu referans uygun tipte bir değişkene atanır. Örneğin;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Point baslangicNoktasi1 = new Point(23, 94);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Point Sınıfı&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public int x;
-public int y;
-
-public Point(int x, int y)
-   {
-    this.x = x;
-    this.y = y;
-  }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Sınıfın tamamını &lt;a href=&quot;http://developer.classpath.org/doc/java/awt/Point-source.html&quot;&gt;buradan&lt;/a&gt; inceleyebilirsiniz.&lt;/p&gt;
-
-&lt;p&gt;Burada Point sınıfı benim oluşturduğum bir sınıf değil. Bu sınıf java.awt içerisinde bulunuyor. Bir point (nokta) (x,y) koordinat düzleminde integer olarak bir konumu temsil ediyor. Bir üsteki örneğimizde bu konuma (23,94) argümanları göndermiştik.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Point baslangicNoktasi1 = new Point(23, 94);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Bu satır yürütüldükten sonra sonucu şu şekilde gösterebiliriz;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://akursat.com/wp-content/uploads/2015/05/bas2.png&quot;&gt;&lt;img src=&quot;http://akursat.com/wp-content/uploads/2015/05/bas2.png&quot; alt=&quot;bas2&quot; /&gt;&lt;/a&gt;Dört constructor içeren Dikdortgen sınıfının kodu şöyle;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;package com.nesneler;
-
-import java.awt.Point;
-/**
- *
- * @author akursat
- *
- */
-public class Dikdortgen {
-    public int genislik = 0;
-    public int yukseklik = 0;
-    public Point baslangicNoktasi;
-
-    // dört constructor
-    public Dikdortgen() {
-        baslangicNoktasi = new Point(0, 0);
-    }
-
-    public Dikdortgen(Point p) {
-        baslangicNoktasi = p;
-    }
-
-    public Dikdortgen(int w, int h) {
-        baslangicNoktasi = new Point(0, 0);
-        genislik = w;
-        yukseklik = h;
-    }
-
-    public Dikdortgen(Point p, int w, int h) {
-        baslangicNoktasi = p;
-        genislik = w;
-        yukseklik = h;
-    }
-
-    // dikdörtgeni hareket ettiren metot
-    public void move(int x, int y) {
-        baslangicNoktasi.x = x;
-        baslangicNoktasi.y = y;
-    }
-
-    // dikdörtgenin alanının hesaplayan metot
-    public int getArea() {
-        return genislik * yukseklik;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Eğer bir sınıfta birden fazla constructor varsa onlar farklı signature’lara sahip olmalıdır. Buna daha önce &lt;a href=&quot;http://akursat.com/?p=85&quot;&gt;burada&lt;/a&gt; değinmiştik.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Dikdortgen dikdortgen1 = new Dikdortgen(baslangicNoktasi1, 100, 200);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Bu satır Diktortgen sınıfının dördüncü constructor’ını çağırır, baslangicNoktasi1 için baslangicNoktasini ilklendirir. Ayrıca constructor, genisliği 100 ve yüksekliğide 200 olarak ayarlar. Şimdi aynı Point nesnesi için iki referansa sahibiz - bir nesne birden fazla referans alabilir.  &lt;a href=&quot;http://akursat.com/wp-content/uploads/2015/05/bas3.png&quot;&gt;&lt;img src=&quot;http://akursat.com/wp-content/uploads/2015/05/bas3.png&quot; alt=&quot;bas3&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 02 May 2015 21:15:24 +0300</pubDate>
-        <link>http://yourdomain.com/java/java%20se/2015/05/02/12-1-nesnelerin-olusturulmasi.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/java/java%20se/2015/05/02/12-1-nesnelerin-olusturulmasi.html</guid>
-        
-        <category>java</category>
-        
-        <category>java dersleri</category>
-        
-        <category>java new</category>
-        
-        <category>nesne</category>
-        
-        <category>new</category>
         
         
         <category>Java</category>
