@@ -21,8 +21,6 @@ tags:
 - static
 ---
 
-## Blok kullanmadan initialize
-
 
 İç içe sınıflar (nested classes) static ve static olmayan olmak üzere ikiye ayrılır.
 
