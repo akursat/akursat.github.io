@@ -1,186 +1,193 @@
 <html>
+
 <head>
-<title>base64 image encoder & decoder</title>
+  <title>base64 image encoder & decoder</title>
 
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<script>
+  <script>
+    $(function() {
 
-$(function() {
+      var ctx = $('#mycanvas')[0].getContext('2d');
+      ctx.font = "20px Arial";
+      ctx.fillText("uploaded or decoded", $('#mycanvas')[0].width / 5.2, $('#mycanvas')[0].height / 2);
+      ctx.fillText("image", $('#mycanvas')[0].width / 2.3, 170);
 
- var ctx = $('#mycanvas')[0].getContext('2d');
- ctx.font = "20px Arial";
- ctx.fillText("uploaded or decoded",$('#mycanvas')[0].width/5.2, $('#mycanvas')[0].height/2);
- ctx.fillText("image",$('#mycanvas')[0].width/2.3, 170);
-
-//copy function
-function copyToClipboard(element) {
-    var $temp = $("<input>");
-    $("body").append($temp);
-    $temp.val($(element).text()).select();
-    document.execCommand("copy");
-    $temp.remove();
-}
+      //copy function
+      function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+      }
 
 
-$('#decodeArea').bind('click', function(event) {
-	$('#decodeArea').select();
-});
+      $('#decodeArea').bind('click', function(event) {
+        $('#decodeArea').select();
+      });
 
-$('#copyButton').bind('click', function(event) {
-	copyToClipboard('.one-line');
-});
+      $('#copyButton').bind('click', function(event) {
+        copyToClipboard('.one-line');
+      });
 
-$('#viewButton').bind('click', function(event) {
-	if (!$.trim($("#decodeArea").val())) {
-    // textarea is empty or contains only white-space
-	} else{
-		$('#mycanvas').fadeOut( "slow", function() {
-   		$('#decodedImage').show();
-     	$('#decodedImage').attr("src", temp);
- 	 });
-	}
-	
-});
+      $('#viewButton').bind('click', function(event) {
+        if (!$.trim($("#decodeArea").val())) {
+          // textarea is empty or contains only white-space
+        } else {
+          $('#mycanvas').fadeOut("slow", function() {
 
-var temp = undefined;
+            $('#decodedImage').attr("src", $("#decodeArea").val());
+            $('#decodedImage').show();
+          });
+        }
 
-$('#toggleButton').bind('click', function(event) {
-  
-  if($('#toggleButton').hasClass('css')){
-  	$('.one-line').html(temp);
-  	$('#toggleButton').removeClass('css');	
-  } else {
-  	$('.one-line').html('background-image: url(\''+$('.one-line').html()+'\');');
-  	$('#toggleButton').addClass('css');
-  }
+      });
 
-});
+      var temp = undefined;
 
-$('#imageinput').bind('change', function(event) {
-	$('#mycanvas').show();
-	$('#decodedImage').hide();
-    var myCanvas = $('#mycanvas')[0];
-    var ctx = myCanvas.getContext('2d');
-    var img = new Image();
-    img.onload = function(){
-	    myCanvas.width = img.width;
-	    myCanvas.height = img.height;
-	    ctx.drawImage(img, 0, 0);
+      $('#toggleButton').bind('click', function(event) {
 
-	    var multiline = myCanvas.toDataURL('image/png');
-	    var singleline = multiline.replace(/(\r\n|\n|\r)/gm,"");
+        if ($('#toggleButton').hasClass('css')) {
+          $('.one-line').html(temp);
+          $('#toggleButton').removeClass('css');
+        } else {
+          $('.one-line').html('background-image: url(\'' + $('.one-line').html() + '\');');
+          $('#toggleButton').addClass('css');
+        }
 
-	    $('.one-line').html(singleline);
-	    temp = singleline;
-    };
+      });
 
-    img.src = URL.createObjectURL(event.target.files[0]);
+      $('#imageinput').bind('change', function(event) {
+        $('#mycanvas').show();
+        $('#decodedImage').hide();
+        var myCanvas = $('#mycanvas')[0];
+        var ctx = myCanvas.getContext('2d');
+        var img = new Image();
+        img.onload = function() {
+          myCanvas.width = img.width;
+          myCanvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
 
- });
+          var multiline = myCanvas.toDataURL('image/png');
+          var singleline = multiline.replace(/(\r\n|\n|\r)/gm, "");
 
-});
-</script> 
+          $('.one-line').html(singleline);
+          temp = singleline;
+        };
 
-<style>
+        img.src = URL.createObjectURL(event.target.files[0]);
 
-.selectable{
-	-webkit-touch-callout: all; /* iOS Safari */
-	-webkit-user-select: all; /* Safari */
-	-khtml-user-select: all; /* Konqueror HTML */
-	-moz-user-select: all; /* Firefox */
-	-ms-user-select: all; /* Internet Explorer/Edge */
-	user-select: all; /* Chrome and Opera */
+      });
 
-}
+    });
+  </script>
 
-.one-line{
-	width: 85%;
-	height: 70px;
-	padding: 1em;
-    overflow: scroll;
-    background-color: #ecf0f1;
-}
-body {
-  padding-top: 50px;
-  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-}
+  <style>
+    .selectable {
+      -webkit-touch-callout: all;
+      /* iOS Safari */
+      -webkit-user-select: all;
+      /* Safari */
+      -khtml-user-select: all;
+      /* Konqueror HTML */
+      -moz-user-select: all;
+      /* Firefox */
+      -ms-user-select: all;
+      /* Internet Explorer/Edge */
+      user-select: all;
+      /* Chrome and Opera */
+    }
 
-.create-section{
-	margin-top: 4%;
-}
-.create-section .view-section {
-  padding: 40px 15px;
-  text-align: center;
+    .one-line {
+      width: 85%;
+      height: 70px;
+      padding: 1em;
+      overflow: scroll;
+      background-color: #ecf0f1;
+    }
 
-}
+    body {
+      padding-top: 50px;
+      font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    }
 
-.image-viewer{
-	padding: 20px;
-}
+    .create-section {
+      margin-top: 4%;
+    }
 
-.navbar-custom {
-    background-color:#e74c3c;
-    color:#ffffff;
-    border-radius:0;
-    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-}
-.footer{
-	background-color:#e74c3c;
-	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-	border-radius:0;
-	color:#ffffff;
-}
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}
+    .create-section .view-section {
+      padding: 40px 15px;
+      text-align: center;
 
-.toggleButton{
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-}
+    }
 
-.disableButton{
-	width: 30px;
-    height: 30px;
-}
-.canvas, .decodedImage{
-	border: antiquewhite;
-	border-style: double;
-	margin: auto;
-	display: block;
-}
+    .image-viewer {
+      padding: 20px;
+    }
 
-textarea {
-    resize: none;
-}
+    .navbar-custom {
+      background-color: #e74c3c;
+      color: #ffffff;
+      border-radius: 0;
+      font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    }
 
-</style>
+    .footer {
+      background-color: #e74c3c;
+      font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+      border-radius: 0;
+      color: #ffffff;
+    }
+
+    .vcenter {
+      display: inline-block;
+      vertical-align: middle;
+      float: none;
+    }
+
+    .toggleButton {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .disableButton {
+      width: 30px;
+      height: 30px;
+    }
+
+    .canvas,
+    .decodedImage {
+      border: antiquewhite;
+      border-style: double;
+      margin: auto;
+      display: block;
+    }
+
+    textarea {
+      resize: none;
+    }
+  </style>
 </head>
 
 
 
 <body>
-<nav class="navbar navbar-custom navbar-fixed-top">
-	<a href="https://github.com/akursat/base64"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
-	<div class="container">
-		<div class="text-center">
-			<h4>Base64 image encoder & decoder</h3>
+  <nav class="navbar navbar-custom navbar-fixed-top">
+    <a href="https://github.com/akursat/base64"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
+    <div class="container">
+      <div class="text-center">
+        <h4>Base64 image encoder & decoder</h3>
 		</div>
 	</div>
 </nav>
@@ -196,15 +203,15 @@ textarea {
 				<input type="file" id="imageinput" class="btn btn-default btn-md center-block" />
 				<hr />
 			</div>
-			
+
 			<div class="col-md-2"></div>
 			<div class="row  col-md-8">
 				<button type="button" id="toggleButton" class="glyphicon glyphicon-forward pull-left vcenter toggleButton"></button>
-				
+
 				<div class="one-line vcenter selectable"></div>
-				<button type="button" id="copyButton" class="btn btn-info btn-md pull-right vcenter">Copy!</button>	
+				<button type="button" id="copyButton" class="btn btn-info btn-md pull-right vcenter">Copy!</button>
 			</div>
-				
+
 		</div>
 		<div class="line-two">
 			<div class="multi-line-toggled"></div>
@@ -222,12 +229,12 @@ textarea {
 		<div class="col-md-2"></div>
 		<div class="row  col-md-8">
 			<button type="button" id="disableButton" disabled="true" class="glyphicon glyphicon-hand-up pull-left vcenter disableButton"></button>
-			
+
 			<textarea id="decodeArea" rows="3" cols="87" placeholder="Paste your code here..."></textarea>
 
 			</textarea>
 
-			<button type="button" id="viewButton" class="btn btn-info btn-md pull-right vcenter">View!</button>	
+			<button type="button" id="viewButton" class="btn btn-info btn-md pull-right vcenter">View!</button>
 		</div>
 	</div>
 	<div class="view-section row">
@@ -240,8 +247,8 @@ textarea {
 
 <div class="footer navbar-custom navbar-fixed-bottom text-center">
 	<h4>2017 / creator: akursat / <span title="not ready :(">pay a coffee</a> </h4>
-</div>
+      </div>
 
 </body>
 
-</html> 
+</html>
